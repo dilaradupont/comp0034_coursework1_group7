@@ -1,6 +1,6 @@
 # Coursework 1 Notebook
 
-## Target Audience
+## Target Audience..
 
 The soon-to-be developed web-based app, will have the characteristics of an interactive dashboard and will be accessible
 to everyone. However, during the kick-off of the project, the IFP team has identified three different possible groups of
