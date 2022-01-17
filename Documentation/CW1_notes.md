@@ -95,3 +95,31 @@ look at the TED talk video he uses it in the way from generic to specific. So pl
 and if you click on them, they open up in the different country bubbles. Moreover, we could plot 1 bubble for the value
 for male and one for the value for female generating a 4/5 variable chart (time vs num of procedure vs cost for male vs
 female in diff countries)
+
+### Nikos 
+
+After examining the target groups I would like to add the following ideas. 
+
+To answer the main question , I think that we could create a combined indicator( maybe average score ) for males and 
+females separately. This will be used to rank the countries in a clear order as to which is the best to start a business 
+at based on your gender. Using a bar chart [https://datavizcatalogue.com/methods/bar_chart.html](https://datavizcatalogue.com/methods/bar_chart.html) then we can display the top 10 countries for 
+each gender. It can serve as an alternative to the map that Andrea and Cate suggested, providing a more easy-to-read, 
+condense, form of the information. For example someone may only be interested in finding the top countries/areas rather
+than exploring the different values manually from the map.
+
+Adding to the bubble graph idea, we can use the bubbles to also demonstrate how the combine score is calculated.
+E.G. you click on the Country bubble indicating the combined score and then the individual scores for each category
+of the country/region show up.
+
+A line graph [https://datavizcatalogue.com/methods/line_graph.html](https://datavizcatalogue.com/methods/line_graph.html) can be used to 
+demonstrate the trend over the years for different regions as already mentioned. I don't believe there is a better way of demonstrating that
+without using video or gif. Plotting several regions/countries on the same graph would allow for an easy visual comparison 
+for the visitor
+
+Since we are interested in the progress different countries make over time, again the idea of plotting the "top 10" countries
+with the highest improvement indicators as a bar chart, may be simple, but I feel like it's a great way of passing on the 
+information is a fast-manner. 
+
+
+
+
