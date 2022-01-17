@@ -118,7 +118,9 @@ for the visitor
 
 Since we are interested in the progress different countries make over time, again the idea of plotting the "top 10" countries
 with the highest improvement indicators as a bar chart, may be simple, but I feel like it's a great way of passing on the 
-information is a fast-manner. 
+information is a fast-manner.
+
+
 
 
 
