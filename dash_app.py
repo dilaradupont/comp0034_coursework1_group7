@@ -13,7 +13,36 @@ from dash import html
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app.title = "Business"
+#navigation bar
 
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("About us", href="http://127.0.0.1:8050/")),
+        dbc.NavItem(dbc.NavLink("Contact", href="http://127.0.0.1:8050/")),
+
+        dbc.NavItem(dbc.NavLink("Top 10", href="http://127.0.0.1:8050/")),
+        dbc.DropdownMenu(
+            children=[
+                dbc.DropdownMenuItem("By Income", header=True),
+                dbc.DropdownMenuItem("By Gender", href="#"),
+                dbc.DropdownMenuItem("By Area", href="#"),
+                dbc.DropdownMenuItem("By Growth", href="#"),
+            ],
+            nav= True,
+            in_navbar=True,
+            label ="More",
+
+        ),
+    ],
+    brand = "Starting a Business",
+    brand_href="http://127.0.0.1:8050/",
+    color = "primary",
+    dark = True,
+    links_left= True,
+    fluid = True,
+
+)
 # assume you have a "long-form" data frame see https://plotly.com/python/px-arguments/ for more options
 df = pd.DataFrame({
     "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
@@ -24,11 +53,12 @@ df = pd.DataFrame({
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+    #html.H1(children='Hello Dash'),
 
-    html.Div(children='''
-        Dash: A web application framework for Python.
-    '''),
+    #html.Div(children='''
+        #Dash: A web application framework for Python.
+    #'''),
+    navbar,
 
     dcc.Graph(
         id='example-graph',
