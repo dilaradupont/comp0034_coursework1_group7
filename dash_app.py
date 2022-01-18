@@ -10,10 +10,11 @@ import plotly.express as px
 from dash import dcc
 from dash import html
 
-external_stylesheets = [dbc.themes.BOOTSTRAP]
+external_stylesheets = [dbc.themes.COSMO]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.title = "Business"
+
 #navigation bar
 
 navbar = dbc.NavbarSimple(
@@ -24,14 +25,15 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dbc.NavLink("Top 10", href="http://127.0.0.1:8050/")),
         dbc.DropdownMenu(
             children=[
-                dbc.DropdownMenuItem("By Income", header=True),
+                dbc.DropdownMenuItem("By Income", href="#"),
                 dbc.DropdownMenuItem("By Gender", href="#"),
                 dbc.DropdownMenuItem("By Area", href="#"),
                 dbc.DropdownMenuItem("By Growth", href="#"),
             ],
             nav= True,
             in_navbar=True,
-            label ="More",
+            label ="Top 10",
+
 
         ),
     ],
@@ -41,8 +43,20 @@ navbar = dbc.NavbarSimple(
     dark = True,
     links_left= True,
     fluid = True,
+    sticky= "top",
+
 
 )
+#text
+text = dbc.Container([
+    dbc.Row(
+        dbc.Col(html.H2("Starting a Business Dashboard (to be removed?)"), width='auto', xxl=5),
+        justify="center"),
+    #dbc.Row(html.H6("Helping you shape your future business.")
+
+
+])
+
 # assume you have a "long-form" data frame see https://plotly.com/python/px-arguments/ for more options
 df = pd.DataFrame({
     "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
@@ -59,6 +73,8 @@ app.layout = html.Div(children=[
         #Dash: A web application framework for Python.
     #'''),
     navbar,
+    text,
+
 
     dcc.Graph(
         id='example-graph',
