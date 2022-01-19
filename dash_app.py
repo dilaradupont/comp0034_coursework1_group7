@@ -66,6 +66,7 @@ df = pd.DataFrame({
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 
+
 app.layout = html.Div(children=[
     #html.H1(children='Hello Dash'),
 
@@ -79,8 +80,31 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='example-graph',
         figure=fig
+=======
+title = dbc.Container([
+    dbc.Row(
+        dbc.Col(html.H1("Starting a Business Dashboard"), width='auto', xxl=3), justify='center'
     )
 ])
+
+"""
+app.layout = html.Div([
+    html.H1(children='Starting a Business Dashboard'),
+    html.Div([
+        html.P('Dash converts Python classes into HTML'),
+        html.P("This conversion happens behind the scenes by Dash's JavaScript front-end")
+    ]),
+    html.Div([
+        dcc.Graph(
+            id='example-graph',
+            figure=fig
+        )
+    ])
+])
+"""
+
+app.title = 'Doing Business'
+app.layout = html.Div([title])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
