@@ -59,7 +59,7 @@ if __name__ == '__main__':
         upper = mean + 3*std_dev
         lower = mean - 3*std_dev
 
-        for year in range(len(indicator_df.columns.values[6:21])):
+        for year in range(len(indicator_df.columns.vales[6:21])):
             up, low = upper[year], lower[year]
             for row in range(len(df_outlier_ind)):
                 val = df_outlier_ind.iloc[row, year+6]
