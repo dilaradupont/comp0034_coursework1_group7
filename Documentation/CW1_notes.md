@@ -96,32 +96,97 @@ and if you click on them, they open up in the different country bubbles. Moreove
 for male and one for the value for female generating a 4/5 variable chart (time vs num of procedure vs cost for male vs
 female in diff countries)
 
-### Nikos 
+### Nikos
 
-After examining the target groups I would like to add the following ideas. 
+After examining the target groups I would like to add the following ideas.
 
-To answer the main question , I think that we could create a combined indicator( maybe average score ) for males and 
-females separately. This will be used to rank the countries in a clear order as to which is the best to start a business 
-at based on your gender. Using a bar chart [https://datavizcatalogue.com/methods/bar_chart.html](https://datavizcatalogue.com/methods/bar_chart.html) then we can display the top 10 countries for 
-each gender. It can serve as an alternative to the map that Andrea and Cate suggested, providing a more easy-to-read, 
-condense, form of the information. For example someone may only be interested in finding the top countries/areas rather
-than exploring the different values manually from the map.
+To answer the main question , I think that we could create a combined indicator( maybe average score ) for males and
+females separately. This will be used to rank the countries in a clear order as to which is the best to start a business
+at based on your gender. Using a bar
+chart [https://datavizcatalogue.com/methods/bar_chart.html](https://datavizcatalogue.com/methods/bar_chart.html) then we
+can display the top 10 countries for each gender. It can serve as an alternative to the map that Andrea and Cate
+suggested, providing a more easy-to-read, condense, form of the information. For example someone may only be interested
+in finding the top countries/areas rather than exploring the different values manually from the map.
 
-Adding to the bubble graph idea, we can use the bubbles to also demonstrate how the combine score is calculated.
-E.G. you click on the Country bubble indicating the combined score and then the individual scores for each category
-of the country/region show up.
+Adding to the bubble graph idea, we can use the bubbles to also demonstrate how the combine score is calculated. E.G.
+you click on the Country bubble indicating the combined score and then the individual scores for each category of the
+country/region show up.
 
-A line graph [https://datavizcatalogue.com/methods/line_graph.html](https://datavizcatalogue.com/methods/line_graph.html) can be used to 
-demonstrate the trend over the years for different regions as already mentioned. I don't believe there is a better way of demonstrating that
-without using video or gif. Plotting several regions/countries on the same graph would allow for an easy visual comparison 
-for the visitor
+A line
+graph [https://datavizcatalogue.com/methods/line_graph.html](https://datavizcatalogue.com/methods/line_graph.html) can
+be used to demonstrate the trend over the years for different regions as already mentioned. I don't believe there is a
+better way of demonstrating that without using video or gif. Plotting several regions/countries on the same graph would
+allow for an easy visual comparison for the visitor
 
-Since we are interested in the progress different countries make over time, again the idea of plotting the "top 10" countries
-with the highest improvement indicators as a bar chart, may be simple, but I feel like it's a great way of passing on the 
-information is a fast-manner.
+Since we are interested in the progress different countries make over time, again the idea of plotting the "top 10"
+countries with the highest improvement indicators as a bar chart, may be simple, but I feel like it's a great way of
+passing on the information is a fast-manner.
 
+## Choropleth Map (Andrea + Nikos)
 
+Looking at the documentation online I found something that can be helpful.
+([https://plotly.github.io/plotly.py-docs/generated/plotly.express.choropleth.html](https://plotly.github.io/plotly.py-docs/generated/plotly.express.choropleth.html))
 
+This is what the input of the function should look like:
 
+import plotly.express as px
 
+px.choropleth(data_frame=None, lat=None, lon=None, locations=None, locationmode=None, geojson=None,
+featureidkey=None, color=None, facet_row=None, facet_col=None, facet_col_wrap=0, facet_row_spacing=None,
+facet_col_spacing=None, hover_name=None, hover_data=None, custom_data=None, animation_frame=None, animation_group=None,
+category_orders=None, labels=None, color_discrete_sequence=None, color_discrete_map=None, color_continuous_scale=None,
+range_color=None, color_continuous_midpoint=None, projection=None, scope=None, center=None, fitbounds=None,
+basemap_visible=None, title=None, template=None, width=None, height=None)
+
+Now the parameters that we have to use are the following:
+- data_frame (dataframe to use for data)
+- locations (column in dataframe with ISO codes to match featureidkey)
+- locationmode or geojson (depending on whether we use external or built-in map geometry)
+- featureidkey (if using geojson is the key that uses to match values from dataframe to geometry map)
+- color (column in data frame to assign color marks - basically variable that we want to show. Considering how the data
+frame is built we can use and filter through overall score (starting a business - score), and the three single indicators:
+time, procedure required and cost scores) - The interactivity can be done by using app callback
+
+example of interactivity with different colormaps:
+
+[Link
+](https://plotly.com/python/choropleth-maps/#:~:text=Bergeron-,Choropleth%20maps%20in%20Dash,to%20effortlessly%20style%20%26%20deploy%20apps%20like%20this%20with%20Dash%20Enterprise.,-Discrete%20Colors)
+
+app.layout = html.Div([
+    html.P("Candidate:"),
+    dcc.RadioItems(
+        id='candidate', 
+        options=[{'value': x, 'label': x} 
+                 for x in candidates],
+        value=candidates[0],
+        labelStyle={'display': 'inline-block'}
+    ),
+    dcc.Graph(id="choropleth"),
+])
+
+@app.callback(
+    Output("choropleth", "figure"), 
+    [Input("candidate", "value")])  # Here the input is captured
+
+def display_choropleth(candidate):
+    fig = px.choropleth(
+        df, geojson=geojson, color=candidate, # here it uses the input "candidate" to update map based on chosen value
+        locations="district", featureidkey="properties.district",
+        projection="mercator", range_color=[0, 6500])
+    fig.update_geos(fitbounds="locations", visible=False)
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+End of Example.
+
+- hover_name
+- hover_data (to show data when hovering over country)
+
+- animation_frame: This could be really cool, we can produce something that shows progression in the years, look at this 
+link for further explanation: [link](https://towardsdatascience.com/how-to-create-an-animated-choropleth-map-with-less-than-15-lines-of-code-2ff04921c60b#ced3)
+
+Other interactive stuff we could do: [link](https://towardsdatascience.com/highlighting-click-data-on-plotly-choropleth-map-377e721c5893)
+I have been trying to search how to create different map layers controlled by the zoom level but cannot find anything 
+for python dash and plotly.
+
+I would say major things to focus on have to be discussed so we can set a meeting whenever you are free. 
 
