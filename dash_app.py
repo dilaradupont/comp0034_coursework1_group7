@@ -30,20 +30,20 @@ navbar = dbc.NavbarSimple(
                 dbc.DropdownMenuItem("By Area", href="#"),
                 dbc.DropdownMenuItem("By Growth", href="#"),
             ],
-            nav= True,
+            nav=True,
             in_navbar=True,
-            label ="Top 10",
+            label="Top 10",
 
 
         ),
     ],
-    brand = "Starting a Business",
+    brand="Starting a Business",
     brand_href="http://127.0.0.1:8050/",
-    color = "primary",
-    dark = True,
-    links_left= True,
-    fluid = True,
-    sticky= "top",
+    color="primary",
+    dark=True,
+    links_left=True,
+    fluid=True,
+    sticky="top",
 
 
 )
@@ -53,8 +53,6 @@ text = dbc.Container([
         dbc.Col(html.H2("Starting a Business Dashboard (to be removed?)"), width='auto', xxl=5),
         justify="center"),
     #dbc.Row(html.H6("Helping you shape your future business.")
-
-
 ])
 
 # assume you have a "long-form" data frame see https://plotly.com/python/px-arguments/ for more options
@@ -84,4 +82,3 @@ app.layout = html.Div(children=[
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-#
