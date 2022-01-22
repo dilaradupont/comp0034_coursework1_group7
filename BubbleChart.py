@@ -14,6 +14,17 @@ import plotly.express as px
 import pandas as pd
 from IPython.display import display
 
+def separate_column(df, column_header, column_with_duplicates, column_with_value):
+    unique_values = df[column_header].unique().tolist()
+    df_copy = df
+    df = df.drop_duplicates(subset=[column_with_duplicates])
+    for index in range(len(unique_values)):
+        column_values = df_copy[df_copy[column_header] == unique_values[index]]
+        df[unique_values[index]] = column_values[column_with_value].tolist()
+    df = df.drop(columns=[column_header, column_with_value])
+    return df
+
+
 df = pd.read_csv('./Data Set/DBJoint.csv')
 
 # clean data to remove all unnecessary rows
@@ -47,27 +58,13 @@ headers_to_drop = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013
 df['Average'] = df.mean(axis=1, skipna=True, numeric_only=True)
 df = df.drop(columns=headers_to_drop, axis=0)
 # for one region, take the average of all the same indicators - across the years and across countries
-
 df_by_region = df.groupby(['Region', 'Indicator Name'], as_index=False).mean()
 
-unique_indicators = df_by_region['Indicator Name'].unique().tolist()
-df_time = df_by_region[df_by_region['Indicator Name'] == unique_indicators[0]]
-df_time = df_time['Average']
-display(df_time)
+# unique_indicators = df_by_region['Indicator Name'].unique().tolist()
+df_by_region = separate_column(df_by_region, 'Indicator Name', 'Region', 'Average')
 
-df_cost = df_by_region[df_by_region['Indicator Name'] == unique_indicators[1]]
-df_cost = df_cost['Average']
-display(df_cost)
+fig_by_region = px.scatter(df_by_region, x='Time ', y='Procedures required ', color='Region', size='Cost ')
+fig_by_region.show()
 
-df_procedure = df_by_region[df_by_region['Indicator Name'] == unique_indicators[2]]
-df_procedure = df_procedure['Average']
-display(df_procedure)
-
-df_by_region = df_by_region.drop_duplicates(subset=['Region'])
-df_by_region['Cost'] = df_cost.tolist()
-df_by_region['Time'] = df_time.tolist()
-df_by_region['Procedure'] = df_procedure.tolist()
-
-# fig = px.scatter(df_by_region, x = df[df_by_region['Indicator Name'] == 'Time'], y = [df_by_region['Indicator Name'] == 'Cost'])
 df.to_csv('data_cleaned.csv', index=False)
 df_by_region.to_csv('data_cleaned_by_region.csv', index=False)
