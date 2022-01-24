@@ -51,6 +51,8 @@ groups. For example, the last one could be of interest for the target audience g
 
 Considering the data and the questions to be answered me and Cate came up with a few ideas.
 
+We need to invert indicators and years in the dataframe, put a year column and creat specific columns for each indicator.
+
 Focusing on the main question to be answered what could be useful is to have a choropleth map
 [https://datavizcatalogue.com/methods/choropleth.html](https://datavizcatalogue.com/methods/choropleth.html). However
 instead of being a normal map we can make it more interactive by implementing a zoom-in approach. What I mean is to
