@@ -1,18 +1,18 @@
 
 import plotly.express as px
-
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
-print(px.data.gapminder()[:15])
+import pandas as pd
+
 
 external_stylesheets = [dbc.themes.COSMO]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
+df = pd.read_csv('Data Set/DBresorted_cm.csv')
 #---------------------------------------------------------------
 app.layout = html.Div([
 
@@ -21,8 +21,8 @@ app.layout = html.Div([
     ]),
 
     html.Div([
-        dcc.Input(id='input_state', type='number', inputMode='numeric', value=2007,
-                  max=2007, min=1952, step=5, required=True),
+        dcc.Input(id='input_state', type='number', inputMode='numeric', value=2006,
+                  max=2020, min=2006, step=1, required=True),
         html.Button(id='submit_button', n_clicks=0, children='Submit'),
         html.Div(id='output_state'),
     ],style={'text-align': 'center'}),
@@ -41,18 +41,18 @@ def update_output(num_clicks, val_selected):
     if val_selected is None:
         raise PreventUpdate
     else:
-        df = px.data.gapminder().query("year=={}".format(val_selected))
+        df = pd.read_csv('Data Set/DBresorted_cm.csv').query("Year=={}".format(val_selected))
         # print(df[:3])
 
-        fig = px.choropleth(df, locations="iso_alpha",
-                            color="lifeExp",
-                            hover_name="country",
+        fig = px.choropleth(df, locations="Country Code",
+                            color="Starting a business - Score",
+                            hover_name="Country Name",
                             projection='natural earth',
-                            title='Life Expectancy by Year',
+                            title='Starting a business - Score by Year',
                             color_continuous_scale=px.colors.sequential.Plasma)
 
         fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
-                          margin=dict(l=60, r=60, t=50, b=50))
+                          margin=dict(l=250, r=10, t=50, b=50))
 
         return ('The input value was "{}" and the button has been \
                 clicked {} times'.format(val_selected, num_clicks), fig)
