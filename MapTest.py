@@ -12,50 +12,79 @@ import pandas as pd
 external_stylesheets = [dbc.themes.COSMO]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+# Data and lists
 df = pd.read_csv('Data Set/DBresorted_cm.csv')
+
+indicator_choropleth_list = ['Starting a business - Score',
+                             'Starting a business: Cost - Average (% of income per capita) - Score',
+                             'Starting a business: Procedures required - Average (number) - Score',
+                             'Starting a business: Time - Average (days) - Score',
+                             'Starting a business: Paid-in Minimum capital (% of income per capita) - Score']
+
+region_choropleth_list = ['World', 'South Asia', 'Middle East & North Africa', 'Europe & Central Asia',
+                          'Sub-Saharan Africa', 'Latin America & Caribbean', 'East Asia & Pacific',
+                          'North America']
+
+income_choropleth_list = ['All', 'Low income', 'Upper middle income', 'Lower middle income', 'High income']
 #---------------------------------------------------------------
+
 app.layout = html.Div([
-
     html.Div([
-        dcc.Graph(id='the_graph')
+        html.P("Indicator:"), # to be removed/changed appropriately
+        dcc.Dropdown(
+            id='indicator',
+            options=[{'value': x, 'label': x}
+                     for x in indicator_choropleth_list],
+            value=indicator_choropleth_list[0]
+        ),
+        dcc.Dropdown(
+            id='region',
+            options=[{'value': x, 'label': x}
+                     for x in region_choropleth_list],
+            value=region_choropleth_list[0]
+        ),
+        dcc.Dropdown(
+            id='income',
+            options=[{'value': x, 'label': x}
+                     for x in income_choropleth_list],
+            value=income_choropleth_list[0]
+        ),
+        dcc.Graph(id='choropleth')
     ]),
-
-    html.Div([
-        dcc.Input(id='input_state', type='number', inputMode='numeric', value=2006,
-                  max=2020, min=2006, step=1, required=True),
-        html.Button(id='submit_button', n_clicks=0, children='Submit'),
-        html.Div(id='output_state'),
-    ],style={'text-align': 'center'}),
-
 ])
 
 #---------------------------------------------------------------
+
+
 @app.callback(
-    [Output('output_state', 'children'),
-    Output(component_id='the_graph', component_property='figure')],
-    [Input(component_id='submit_button', component_property='n_clicks')],
-    [State(component_id='input_state', component_property='value')]
-)
+    Output("choropleth", "figure"),
+    [Input("indicator", "value")], [Input("region", "value")], [Input("income", "value")])  # Here the input is captured
+def update_output(indicator, region, income):
 
-def update_output(num_clicks, val_selected):
-    if val_selected is None:
-        raise PreventUpdate
+    if region != 'World':
+        df_sub = df.loc[df['Region'] == region]
     else:
-        df = pd.read_csv('Data Set/DBresorted_cm.csv').query("Year=={}".format(val_selected))
-        # print(df[:3])
+        df_sub = df
 
-        fig = px.choropleth(df, locations="Country Code",
-                            color="Starting a business - Score",
-                            hover_name="Country Name",
-                            projection='natural earth',
-                            title='Starting a business - Score by Year',
-                            color_continuous_scale=px.colors.sequential.Plasma)
+    if income != 'All':
+        df_sub = df_sub.loc[df['Income Group'] == income]
+    else:
+        df_sub = df_sub
 
-        fig.update_layout(title=dict(font=dict(size=28),x=0.5,xanchor='center'),
-                          margin=dict(l=250, r=10, t=50, b=50))
+    fig = px.choropleth(df_sub, locations="Country Code",
+                        color=indicator,
+                        hover_name="Country Name",
+                        projection='natural earth',
+                        title=str(indicator),
+                        animation_frame='Year',
+                        color_continuous_scale=px.colors.sequential.Plasma,
+                        fitbounds='locations')
 
-        return ('The input value was "{}" and the button has been \
-                clicked {} times'.format(val_selected, num_clicks), fig)
+    fig.update_layout(title=dict(font=dict(size=28), x=0.5, xanchor='center'),
+                      margin=dict(l=250, r=10, t=50, b=50))
+    return fig
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
