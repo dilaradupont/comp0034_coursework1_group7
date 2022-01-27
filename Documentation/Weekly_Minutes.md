@@ -41,3 +41,28 @@ women, radar)
 
 ### Next meeting: 24/01/22 11:00 - 13:00 - informal meeting between classes
 ### Next online meeting: 27/01/22 15:00
+
+# Week 2
+
+## Done
+- The subgroups started working on the dash plots using both plotly express and go libraries
+- Comparison and brainstorming to improve the different charts and implement better interactivity
+- Division of work to complete within Sunday before next informal meeting (Monday 31/01):
+  - Andrea: Choropleth styling and side chart
+  - Dilara: Radar chart (implement comparison)
+  - Caterina: Bubble chart interactivity 
+  - Nikos: Generate multi page structure and side chart (support Andrea)
+- Discussion of the idea for the main page and others
+- Decision on overall format and naming/styling convention
+
+## To do for next week
+- Develop precise, well-presented graphs (before Monday 31st)
+- Watch videos on testing 
+- Brainstorm about testing possibilities
+- Start thinking about next subgroups and work allocation
+
+# Issues 
+- none
+
+### Next meeting: 31/01/22 11:00 - 13:00 , 17:00 - 19:00 - informal meeting between classes
+### Next online meeting: 27/01/22 14:00
