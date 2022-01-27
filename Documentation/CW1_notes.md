@@ -194,6 +194,6 @@ I would say major things to focus on are:
 - style (3 drop menus one next to each other with different colour)
 - Remove the x button from dropdown or use it properly
 - Make map bigger
-- colormap title/legend always set to 'Score'
+- colormap title/legend always set to 'Score' (done)
 - look at plotly go styling objects and see if some can apply
 - check adding top 10 bar chart/list on the side (concerns: overcrowded)
