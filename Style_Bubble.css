@@ -1,0 +1,30 @@
+#indicator .VirtualizedSelectFocusedOption {
+  background-color: green;
+  color: white;
+}
+
+#region .VirtualizedSelectFocusedOption {
+  background-color: green;
+  color: white;
+}
+
+#income .VirtualizedSelectFocusedOption {
+  background-color: green;
+  color: white;
+}
+
+#indicator .Select-menu-outer {
+  background-color: lightgray;
+}
+
+#region .Select-menu-outer {
+  background-color: lightgray;
+}
+
+#income .Select-menu-outer {
+  background-color: lightgray;
+}
+
+.Checklist {
+  color: hotpink
+}
