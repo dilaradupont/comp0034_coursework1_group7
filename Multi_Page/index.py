@@ -48,7 +48,7 @@ def display_page(pathname):
     if pathname == '/contact':
         return Contact_app.layout
     elif pathname == '/bubble-chart':
-        return Bubble_Chart_app.layout
+        return Bubble_Chart_app.bubblechart_page
     elif pathname == '/':
         return Choropleth_app.front_page
     else:
