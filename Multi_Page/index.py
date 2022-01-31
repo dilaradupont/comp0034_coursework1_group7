@@ -38,7 +38,7 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-index_layout = Choropleth_app.layout
+index_layout = Choropleth_app.front_page
 
 
 @app.callback(Output('page-content', 'children'),
@@ -50,7 +50,7 @@ def display_page(pathname):
     elif pathname == '/bubble-chart':
         return Bubble_Chart_app.layout
     elif pathname == '/':
-        return Choropleth_app.layout
+        return Choropleth_app.front_page
     else:
         return '404 Page Not Found'
 
