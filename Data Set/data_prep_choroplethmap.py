@@ -3,6 +3,7 @@ import pandas as pd
 
 df = pd.read_csv('DBJoint.csv')
 
+df = df[df['Urban Code'].isnull()]
 
 # Drop currency unit, Indicator code
 df = df.drop(columns=['Currency Unit', 'Indicator Code'])
