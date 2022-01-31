@@ -21,7 +21,10 @@ pio.renderers.default = "browser"
 TO DO:
 - try implementing a bar at the bottom of this chart to select the different regions first
     if you can easily make that work, move on to implementing the plotly graph objects technique of clicking on dots
-
+- add external border pink / blue
+- add adaptive sizing
+- remove everything but region, year, cost from hover label
+- see if you can add trace 
 '''
 
 df_by_region = pd.read_csv('./Data Set/DBBubbleChart_Regional.csv')
@@ -130,7 +133,8 @@ def update_chart(gender, region):
 
     fig.layout.autosize = True
     fig.update_layout(title=dict(font=dict(size=20)),
-                      margin=dict(l=15, r=15, t=35, b=5))
+                      margin=dict(l=15, r=15, t=35, b=5),
+                      autosize = True)
     return fig
 
 
