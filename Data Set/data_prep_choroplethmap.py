@@ -3,6 +3,7 @@ import pandas as pd
 
 df = pd.read_csv('DBJoint.csv')
 
+df = df[df['Urban Code'].isnull()]
 
 # Drop currency unit, Indicator code
 df = df.drop(columns=['Currency Unit', 'Indicator Code'])
@@ -30,5 +31,31 @@ df = df[['Country Name', 'Country Code', 'Urban Area Name', 'Urban Code', 'Regio
          'Starting a business: Time - Men (days)', 'Starting a business: Time - Men (days) - Score', 'Starting a business: Time - Women (days)',
          'Starting a business: Time - Women (days)- Score']]
 
-df = df.sort_values('Country Name') # Sort by alphabetical order on country column
+df['Starting a business: Cost - Average (% of income per capita) - Score'] = df[['Starting a business: Cost - Men (% of income per capita) - Score',
+                                                                                 'Starting a business: Cost - Women (% of income per capita) - Score']].mean(axis=1)
+
+df['Starting a business: Procedures required - Average (number) - Score'] = df[['Starting a business: Procedures required - Men (number) - Score',
+                                                                                 'Starting a business: Procedures required - Women (number) - Score']].mean(axis=1)
+
+df['Starting a business: Time - Average (days) - Score'] = df[['Starting a business: Time - Women (days)- Score',
+                                                               'Starting a business: Time - Men (days) - Score']].mean(axis=1)
+
+df = df.drop(columns=['Starting a business: Cost - Men (% of income per capita)',
+         'Starting a business: Cost - Men (% of income per capita) - Score',
+         'Starting a business: Cost - Women (% of income per capita)',
+         'Starting a business: Cost - Women (% of income per capita) - Score',
+         'Starting a business: Minimum capital (% of income per capita)',
+         'Starting a business: Procedures required - Men (number)', 'Starting a business: Procedures required - Men (number) - Score',
+         'Starting a business: Procedures required - Women (number)', 'Starting a business: Procedures required - Women (number) - Score',
+         'Starting a business: Time - Men (days)', 'Starting a business: Time - Men (days) - Score', 'Starting a business: Time - Women (days)',
+         'Starting a business: Time - Women (days)- Score', 'Urban Area Name', 'Urban Code'])
+
+df = df[['Country Name', 'Country Code', 'Region', 'Income Group', 'Year',
+         'Starting a business - Score', 'Starting a business: Cost - Average (% of income per capita) - Score',
+         'Starting a business: Procedures required - Average (number) - Score',
+         'Starting a business: Time - Average (days) - Score',
+         'Starting a business: Paid-in Minimum capital (% of income per capita) - Score']]
+
+
+df = df.sort_values('Year') # Sort by alphabetical order on country column
 df.to_csv('DBresorted_cm.csv', index=False)

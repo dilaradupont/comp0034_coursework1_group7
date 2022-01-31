@@ -190,5 +190,10 @@ Other interactive stuff we could do: [link](https://towardsdatascience.com/highl
 I have been trying to search how to create different map layers controlled by the zoom level but cannot find anything 
 for python dash and plotly.
 
-I would say major things to focus on have to be discussed so we can set a meeting whenever you are free. 
-
+I would say major things to focus on are:
+- style (3 drop menus one next to each other with different colour)
+- Remove the x button from dropdown or use it properly
+- Make map bigger
+- colormap title/legend always set to 'Score' (done)
+- look at plotly go styling objects and see if some can apply
+- check adding top 10 bar chart/list on the side (concerns: overcrowded)
