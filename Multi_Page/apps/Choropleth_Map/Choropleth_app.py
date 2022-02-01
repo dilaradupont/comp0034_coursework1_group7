@@ -1,18 +1,19 @@
+#-------------------- Imports--------------------#
+
 import plotly.express as px
-import dash
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output, State
-from dash.exceptions import PreventUpdate
+from dash.dependencies import Input, Output
 import pandas as pd
 from Multi_Page.StartingBusiness import app
 
+#-----------------StyleSheet---------------------#
+
 external_stylesheets = [dbc.themes.COSMO]
 
+#----------------Data&Lists----------------------#
 
-
-# Data and lists
 df = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
 
 indicator_choropleth_list = ['Starting a business - Score',
@@ -26,33 +27,8 @@ region_choropleth_list = ['World', 'South Asia', 'Middle East & North Africa', '
                           'North America']
 
 income_choropleth_list = ['All', 'Low income', 'Upper middle income', 'Lower middle income', 'High income']
-#---------------------------------------------------------------
-"""
-app.layout = html.Div([
-    html.Div([
-        html.P("Indicator:"), # to be removed/changed appropriately
-        dcc.Dropdown(
-            id='indicator',
-            options=[{'value': x, 'label': x}
-                     for x in indicator_choropleth_list],
-            value=indicator_choropleth_list[0]
-        ),
-        dcc.Dropdown(
-            id='region',
-            options=[{'value': x, 'label': x}
-                     for x in region_choropleth_list],
-            value=region_choropleth_list[0]
-        ),
-        dcc.Dropdown(
-            id='income',
-            options=[{'value': x, 'label': x}
-                     for x in income_choropleth_list],
-            value=income_choropleth_list[0]
-        ),
-        dcc.Graph(id='choropleth')
-    ]),
-])
-"""
+
+#------------------------ChoroplethMap-----------------------------#
 
 front_page = dbc.Container(fluid=True, children=[
     dbc.Row(
@@ -105,8 +81,11 @@ front_page = dbc.Container(fluid=True, children=[
     ]),
 ])
 
+#----------------------------Layout----------------------------#
+
 app.layout = front_page
-#---------------------------------------------------------------
+
+#---------------------------Callbacks--------------------------#
 
 @app.callback(
     [Output("choropleth", "figure"), Output("barchart", "figure")],
@@ -175,6 +154,7 @@ def update_output(indicator, region, income, year):
 
     return fig_cm, fig_bc
 
+#-----------------------Isolated Excecution Option------------------------------#
 
 if __name__ == '__main__':
     app.run_server(debug=True)
