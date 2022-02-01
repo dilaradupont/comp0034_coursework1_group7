@@ -27,13 +27,13 @@ TO DO:
 - see if you can add trace 
 '''
 
+
 df_by_region = pd.read_csv('apps/Bubble_Chart/DBBubbleChart_Regional.csv')
 df_general = pd.read_csv('apps/Bubble_Chart/DBBubbleChart.csv')
 
+
 external_stylesheets = [dbc.themes.COSMO]
 region_bubblechart_list = df_general['Region'].unique()
-
-
 
 bubblechart_page = dbc.Container(fluid=True, children=[
     dbc.Row(
