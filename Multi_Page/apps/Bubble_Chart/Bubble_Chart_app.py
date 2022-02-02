@@ -1,14 +1,16 @@
 import plotly.express as px
-import dash
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import pandas as pd
+import os.path
 from IPython.display import display
-from Multi_Page.StartingBusiness import app
+from pathlib import Path
 import plotly.io as pio
+from Multi_Page.StartingBusiness import app
+
 
 pio.renderers.default = "browser"
 
@@ -26,14 +28,16 @@ TO DO:
 - remove everything but region, year, cost from hover label
 - see if you can add trace 
 '''
-
-
-df_by_region = pd.read_csv('apps/Bubble_Chart/DBBubbleChart_Regional.csv')
-df_general = pd.read_csv('apps/Bubble_Chart/DBBubbleChart.csv')
-
+df_path = os.path.join("apps", "Bubble_Chart")
+df_by_region = pd.read_csv(os.path.join(df_path, "DBBubbleChart_Regional.csv"))
+#df_by_region = pd.read_csv('apps/Bubble_Chart/DBBubbleChart_Regional.csv')
+#df_general = pd.read_csv('apps/Bubble_Chart/DBBubbleChart.csv')
+df_general = pd.read_csv(os.path.join(df_path, "DBBubbleChart.csv"))
 
 external_stylesheets = [dbc.themes.COSMO]
 region_bubblechart_list = df_general['Region'].unique()
+
+#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 bubblechart_page = dbc.Container(fluid=True, children=[
     dbc.Row(

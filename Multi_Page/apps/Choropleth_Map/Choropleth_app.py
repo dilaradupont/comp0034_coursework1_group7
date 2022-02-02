@@ -7,6 +7,8 @@ from dash import html
 from dash.dependencies import Input, Output
 import pandas as pd
 from Multi_Page.StartingBusiness import app
+import os
+import pathlib as Path
 
 #-----------------StyleSheet---------------------#
 
@@ -14,8 +16,9 @@ external_stylesheets = [dbc.themes.COSMO]
 
 #----------------Data&Lists----------------------#
 
-df = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
-
+#df = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
+df_path = os.path.join("apps", "Choropleth_Map")
+df = pd.read_csv(os.path.join(df_path, "DBresorted_cm.csv"))
 indicator_choropleth_list = ['Starting a business - Score',
                              'Starting a business: Cost - Average (% of income per capita) - Score',
                              'Starting a business: Procedures required - Average (number) - Score',
