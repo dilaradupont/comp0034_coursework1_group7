@@ -9,7 +9,7 @@ indicator_code = ['IC.REG.DURS.MA.DY.DFRN', 'IC.REG.DURS.FE.DY.DRFN', 'IC.REG.PR
 
 # Tracing first radar chart
 fig = go.Figure()
-x = 185
+x = 0
 year_col = 5
 
 radar_m = [df.iloc[0+x, year_col], df.iloc[382+x, year_col], df.iloc[764+x, year_col]]
