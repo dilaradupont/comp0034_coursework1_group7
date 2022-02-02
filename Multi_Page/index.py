@@ -50,7 +50,7 @@ def display_page(pathname):
     elif pathname == '/bubble-chart':
         return Bubble_Chart_app.bubblechart_page
     elif pathname == '/':
-        return Choropleth_app.cm_bc_page
+        return Choropleth_app.cm_bc_page #to be changed with about us
     else:
         return '404 Page Not Found'
 
