@@ -1,4 +1,16 @@
-#-------------------- Imports--------------------#
+"""
+This file is used to code the we page on dash showing the interactive choropleth map and bar chart. The charts have been
+developed using the plotly express library. The web page has been designed using dash (dcc and html). The interactivity
+is instead created using app callbacks with dash dependencies (input, output).
+
+The code should return a web page divided in two columns. A side column having two parameters (region, income) dropdown
+menus and a barchart (with another dropdown menu for the year). The main column instead has a dropdown menu to select
+the indicator and the choropleth map with the year animation.
+
+Used PEP 8 - style guide for python
+"""
+
+# ------------------------------------------------Imports------------------------------------------------------------- #
 
 import plotly.express as px
 import dash_bootstrap_components as dbc
@@ -7,33 +19,36 @@ from dash import html
 from dash.dependencies import Input, Output
 import pandas as pd
 from Multi_Page.StartingBusiness import app
-import os
-import pathlib as Path
 
-#-----------------StyleSheet---------------------#
+# Disabling SettingCopyWarning from pandas as it was flagging a (falsely) potentially confusing "chained" assignment
+pd.options.mode.chained_assignment = None
+
+# -----------------------------------------------StyleSheet----------------------------------------------------------- #
 
 external_stylesheets = [dbc.themes.COSMO]
 
-#----------------Data&Lists----------------------#
+# ------------------------------------------------Data&Lists---------------------------------------------------------- #
+# Import data from the correct directory and add lists for dropdown menus
 
-#df = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
-df_path = os.path.join("apps", "Choropleth_Map")
-df = pd.read_csv(os.path.join(df_path, "DBresorted_cm.csv"))
-indicator_choropleth_list = ['Starting a business - Score',
-                             'Starting a business: Cost - Average (% of income per capita) - Score',
-                             'Starting a business: Procedures required - Average (number) - Score',
-                             'Starting a business: Time - Average (days) - Score',
-                             'Starting a business: Paid-in Minimum capital (% of income per capita) - Score']
+df_cm_bc = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
 
-region_choropleth_list = ['World', 'South Asia', 'Middle East & North Africa', 'Europe & Central Asia',
-                          'Sub-Saharan Africa', 'Latin America & Caribbean', 'East Asia & Pacific',
-                          'North America']
+indicator_dropdown_list = ['Starting a business - Score',
+                           'Starting a business: Cost - Average (% of income per capita) - Score',
+                           'Starting a business: Procedures required - Average (number) - Score',
+                           'Starting a business: Time - Average (days) - Score',
+                           'Starting a business: Paid-in Minimum capital (% of income per capita) - Score']
 
-income_choropleth_list = ['All', 'Low income', 'Upper middle income', 'Lower middle income', 'High income']
+region_dropdown_list = ['World', 'South Asia', 'Middle East & North Africa', 'Europe & Central Asia',
+                        'Sub-Saharan Africa', 'Latin America & Caribbean', 'East Asia & Pacific', 'North America']
 
-#------------------------ChoroplethMap-----------------------------#
+income_dropdown_list = ['All', 'Low income', 'Upper middle income', 'Lower middle income', 'High income']
 
-front_page = dbc.Container(fluid=True, children=[
+# -------------------------------------------Web Page Style----------------------------------------------------------- #
+# Creating the container as two columns of different widths to incorporate the dropdown menus and both the choropleth
+# map (main column) and bar chart (side column). Enabled the multi selection function for dropdowns and disabled the
+# clearable.
+
+cm_bc_page = dbc.Container(fluid=True, children=[
     dbc.Row(
         dbc.Col(children=[html.Br()])),
 
@@ -43,8 +58,8 @@ front_page = dbc.Container(fluid=True, children=[
             html.H5("Select Region"),
             dcc.Dropdown(
                 id='region',
-                options=[{'value': x, 'label': x} for x in region_choropleth_list],
-                value=region_choropleth_list[0],
+                options=[{'value': x, 'label': x} for x in region_dropdown_list],
+                value=region_dropdown_list[0],
                 clearable=False,
                 multi=True),
             html.Br(),
@@ -52,8 +67,8 @@ front_page = dbc.Container(fluid=True, children=[
             html.H5("Select Income Group"),
             dcc.Dropdown(
                 id='income',
-                options=[{'value': x, 'label': x} for x in income_choropleth_list],
-                value=income_choropleth_list[0],
+                options=[{'value': x, 'label': x} for x in income_dropdown_list],
+                value=income_dropdown_list[0],
                 clearable=False,
                 multi=True),
             html.Br(),
@@ -64,7 +79,7 @@ front_page = dbc.Container(fluid=True, children=[
             html.H5("Select Bar Chart Year"),
             dcc.Dropdown(
                 id='year',
-                options=[{'value': x, 'label': x} for x in list(range(2006,2021,1))],
+                options=[{'value': x, 'label': x} for x in list(range(2006, 2021, 1))],
                 value=2006,
                 clearable=False,
                 multi=False),
@@ -75,8 +90,8 @@ front_page = dbc.Container(fluid=True, children=[
             html.H5("Select Indicator"),
             dcc.Dropdown(
                 id='indicator',
-                options=[{'value': x, 'label': x} for x in indicator_choropleth_list],
-                value=indicator_choropleth_list[0],
+                options=[{'value': x, 'label': x} for x in indicator_dropdown_list],
+                value=indicator_dropdown_list[0],
                 clearable=False),
             html.Br(),
             dcc.Graph(id='choropleth'),
@@ -84,36 +99,58 @@ front_page = dbc.Container(fluid=True, children=[
     ]),
 ])
 
-#----------------------------Layout----------------------------#
+# -----------------------------------------------Layout--------------------------------------------------------------- #
+# Generating app layout based on container
 
-app.layout = front_page
+app.layout = cm_bc_page
 
-#---------------------------Callbacks--------------------------#
+
+# -------------------------------------------Interactivity and Charts------------------------------------------------- #
+# Generating and updating the choropleth map (fig_cm) and bar chart (fig_bc) capturing the user inputs generated by
+# selecting values in the different dropdown menus. The different charts have an associated pandas dataframe.
+
 
 @app.callback(
     [Output("choropleth", "figure"), Output("barchart", "figure")],
-    [Input("indicator", "value")], [Input("region", "value")], [Input("income", "value")], [Input("year", "value")])  # Here the input is captured
+    [Input("indicator", "value")], [Input("region", "value")], [Input("income", "value")], [Input("year", "value")])
 def update_output(indicator, region, income, year):
+    """
+    Function returns the figure for both the choropleth map and bar chart based on the inputs captured by using the
+    callbacks and passed as inputs of the function
 
-    # When no values are selected from multi choice go to home graph of region and income group
+    :param [str] indicator: Indicator selected from the dropdown menu
+    :param [list] region: List of regions selected from the dropdown menu (can be single or multiple values)
+    :param [list] income: List of income groups selected from the dropdown menu (can be single or multiple values)
+    :param [str] year: Value selected for the year to display in the bar chart
+    :return: figures for choropleth map and bar chart
+    """
+
+    # When no values are selected from multi choice then use the standard values for region and income group
     if len(region) == 0:
         region = ['World']
     if len(income) == 0:
         income = ['All']
 
+    # -------------------------------------------Choropleth Map--------------------------------------------------------#
+
+    # Modifying the dataframe to generate choropleth map by taking data for only the selected regions. Setting fitbound
+    # value variable to locations to automatically zoom in selected regions in the map
     if 'World' not in region:
-        df_choropleth = df.loc[df['Region'].isin(region)]
+        df_choropleth = df_cm_bc.loc[df_cm_bc['Region'].isin(region)]
         fitbound_value_cm = 'locations'
     else:
-        df_choropleth = df
+        df_choropleth = df_cm_bc
         fitbound_value_cm = False
 
+    # Modifying the dataframe to generate choropleth map by taking data for only the selected income groups
     if 'All' not in income:
-        df_choropleth = df_choropleth.loc[df['Income Group'].isin(income)]
+        df_choropleth = df_choropleth.loc[df_cm_bc['Income Group'].isin(income)]
     else:
         df_choropleth = df_choropleth
 
-    fig_cm = px.choropleth(df_choropleth, locations="Country Code",
+    # Generate choropleth map using specific values for range_color to have constant color scale
+    fig_cm = px.choropleth(df_choropleth,
+                           locations="Country Code",
                            color=indicator,
                            hover_name="Country Name",
                            projection='natural earth',
@@ -124,40 +161,59 @@ def update_output(indicator, region, income, year):
                            fitbounds=fitbound_value_cm,
                            range_color=[0, 100])
 
+    # Update the layout (title, margin and color bar title) for choropleth map figure
     fig_cm.update_layout(title=dict(font=dict(size=20)),
                          margin=dict(l=15, r=15, t=35, b=5),
                          coloraxis_colorbar=dict(title="Score"))
 
-    df_bc = df_choropleth.loc[df_choropleth['Year'] == year]
-    df_bc.sort_values(by=[str(indicator)], inplace=True, ascending=False)
-    df_bc = df_bc.head(10)
-    df_bc = df_bc[df_bc[str(indicator)].notna()]
-    df_bc.sort_values(by=[str(indicator)], inplace=True, ascending=True)
+    # ------------------------------------------Bar Chart--------------------------------------------------------------#
 
-    if df_bc[str(indicator)].count() in range(3, 11):
-        list_pos_color = ['Runners up' for i in range(1, df_bc[str(indicator)].count() - 2)]
+    # Modify the same database used for choropleth to display same data but only showing the top 10 countries in a
+    # ranking order
+    df_barchart = df_choropleth.loc[df_choropleth['Year'] == year]
+    df_barchart.sort_values(by=[str(indicator)], inplace=True, ascending=False)
+    df_barchart = df_barchart.head(10)
+    df_barchart = df_barchart[df_barchart[str(indicator)].notna()]
+    df_barchart.sort_values(by=[str(indicator)], inplace=True, ascending=True)
+
+    # Creating a list in order to change color of bar chart based on the position. List can take different dimensions
+    # due to number of countries available for selected parameters. Thus creating a list for the top n positions with
+    # n between 0 and 10
+    if df_barchart[str(indicator)].count() in range(3, 11):
+        list_pos_color = ['Runners up' for i in range(1, df_barchart[str(indicator)].count() - 2)]
         list_pos_color.extend(('Third', 'Second', 'First'))
-    elif df_bc[str(indicator)].count() == 3:
+    elif df_barchart[str(indicator)].count() == 3:
         list_pos_color = ['Third', 'Second', 'First']
-    elif df_bc[str(indicator)].count() == 2:
+    elif df_barchart[str(indicator)].count() == 2:
         list_pos_color = ['Second', 'First']
-    elif df_bc[str(indicator)].count() == 1:
+    elif df_barchart[str(indicator)].count() == 1:
         list_pos_color = ['First']
     else:
         list_pos_color = []
 
-    fig_bc = px.bar(df_bc, x=indicator, y='Country Name', orientation='h', labels={str(indicator): 'Score'},
-                    hover_data={'Country Name': False}, color=list_pos_color, text='Country Name',
-                    color_discrete_map={'First': 'rgb(255,215,0)',
-                                        'Second': 'rgb(192,192,192)',
-                                        'Third': 'rgb(205, 127, 50)',
-                                        'Runners up': 'rgb(204, 229, 255)'})
+    # Generating bar chart figure specifying colours for first, second, third and runners up positions and adding name
+    # of country over the bar
+    fig_bc = px.bar(df_barchart,
+                    x=indicator,
+                    y='Country Name',
+                    orientation='h',
+                    labels={str(indicator): 'Score'},
+                    hover_data={'Country Name': False},
+                    color=list_pos_color,
+                    text='Country Name',
+                    color_discrete_map={'First': 'rgb(255,215,0)',  # Gold
+                                        'Second': 'rgb(192,192,192)',  # Silver
+                                        'Third': 'rgb(205, 127, 50)',  # Bronze
+                                        'Runners up': 'rgb(204, 229, 255)'})  # Light blue
 
+    # Disabling the y-axes labels and title
     fig_bc.update_yaxes(visible=False, showticklabels=False)
 
     return fig_cm, fig_bc
 
-#-----------------------Isolated Excecution Option------------------------------#
+
+# ----------------------------------------Isolated Execution Option--------------------------------------------------- #
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
