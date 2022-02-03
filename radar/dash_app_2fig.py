@@ -31,7 +31,7 @@ radar_page = dbc.Container(fluid=True, children=[
     ]),
 
     dbc.Row([
-        dbc.Col(width=2, children=[
+        dbc.Col(width={"size":3, "offset": 1}, children=[
             html.Br(),
             html.H5('Select Country'),
             dcc.Dropdown(
@@ -51,7 +51,7 @@ radar_page = dbc.Container(fluid=True, children=[
             ),
             html.Br(),
         ]),
-        dbc.Col(width=2, children=[
+        dbc.Col(width={"size":3, "offset": 3}, children=[
             html.Br(),
             html.H5('Select Country'),
             dcc.Dropdown(
@@ -80,9 +80,27 @@ app.layout = radar_page
     [Output("radar_chart", "figure"), Output("radar_chart1", "figure")],
     [Input("country", "value")], [Input("year", "value")], [Input("country1", "value")], [Input("year1", "value")])
 def update_chart(country, year, country1, year1):
+    # if len(country) == 0:
+    #     country = ['Afghanistan']
+    # if len(year) == 0:
+    #     year = ['2020']
 
-    lis1 = [country, country1]
-    lis2 = [year, year1]
+    # if len(country1) == 0:
+    #     country1 = ['Afghanistan']
+    # if len(year1) == 0:
+    #     year1 = ['2019']
+
+    if country == '':
+        country = 'Afghanistan'
+    if year == '':
+        year = '2019'
+    if year1 == '':
+        year1 = '2019'
+        year1 = '20'
+
+    lis1 = [str(country), str(country1)]
+    lis2 = [str(year), str(year1)]
+    print(country)
 
     indicators_title = ['Time required score','Procedures required score','Cost (% of income per capita) score']
     country_list = df_radar['Country Name'].unique().tolist()
@@ -90,15 +108,18 @@ def update_chart(country, year, country1, year1):
 
     for i in range(len(lis1)):
         # Get data
-        year = ''.join(filter(str.isalnum, str(lis2[i])))
-        country = ''.join(filter(str.isalnum, str(lis1[i])))
+        # year = ''.join(filter(str.isalnum, str(lis2[i])))
+        # country = ''.join(filter(str.isalnum, str(lis1[i])))
+        year = lis2[i]
+        country = lis1[i]
+
         # Default graph settings
-        if country == '':
-            country = 'Afghanistan'
-        if year == '' and i == 0:
-            year = '2019'
-        if year == '' and i == 1:
-            year = '2020'
+        # if country == '':
+        #     country = 'Afghanistan'
+        # if year == '' and i == 0:
+        #     year = '2019'
+        # if year == '' and i == 1:
+        #     year = '2020'
 
         header = df_radar.columns.tolist()
         col = header.index(year)
@@ -135,10 +156,6 @@ def update_chart(country, year, country1, year1):
                 )))
 
         fig.layout.autosize = True
-        # fig.update_layout(title=dict(font=dict(size=20)),
-        #                     margin=dict(l=15, r=15, t=35, b=5),
-        #                     autosize = True)
-
         lis_fig.append(fig)
 
     return lis_fig[0], lis_fig[1]
