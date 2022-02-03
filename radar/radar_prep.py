@@ -19,8 +19,7 @@ for i in range(len(indicator_code)):
     df1 = df[df['Indicator Code'] == indicator_code[i]]
     data.append(df1)
 
-
 df_radar = pd.concat([data[0], data[1], data[2], data[3], data[4], data[5]], axis=0, join="outer")
 df.reset_index(drop=True, inplace=True)
-df_radar.to_csv('radar/radar_data.csv', index=False)
+df_radar.to_csv('Data Set/DBRadar.csv', index=False)
 

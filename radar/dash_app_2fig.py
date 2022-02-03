@@ -9,7 +9,7 @@ import plotly.io as pio
 
 pio.renderers.default = "browser"
 
-df_radar = pd.read_csv('./radar/radar_data.csv')
+df_radar = pd.read_csv('./Data Set/DBRadar.csv')
 
 external_stylesheets = [dbc.themes.COSMO]
 country_list = df_radar['Country Name'].unique()
@@ -96,7 +96,7 @@ def update_chart(country, year, country1, year1):
         year = '2019'
     if year1 == '':
         year1 = '2019'
-        year1 = '20'
+        year1 = '2020'
 
     lis1 = [str(country), str(country1)]
     lis2 = [str(year), str(year1)]
