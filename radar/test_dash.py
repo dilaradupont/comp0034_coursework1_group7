@@ -5,6 +5,7 @@ from dash import html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objects as go
+import numpy as np
 
 import plotly.io as pio
 
@@ -40,7 +41,8 @@ radar_page = dbc.Container(fluid=True, children=[
                          for x in year_list],
                 value=[],
                 id="year",
-                multi=True, ),
+                multi=True,
+            ),
             html.Br(),
         ]),
 
@@ -61,11 +63,11 @@ def update_chart(country, year):
     indicators_title = ['Time required score','Procedures required score','Cost (% of income per capita) score']
     country_list = df_radar['Country Name'].unique().tolist()
 
-    # If nothing is chosen
-    if len(country) == 0:
-        country = ['Afghanistan']
-    if len(year) == 0:
-        year = [2020]
+    # # If nothing is chosen
+    # if len(country) == 0:
+    #     country = ['Afghanistan']
+    # if len(year) == 0:
+    #     year = [2020]
 
     # Get data
     year = ''.join(filter(str.isalnum, str(year)))
@@ -73,8 +75,10 @@ def update_chart(country, year):
     header = df_radar.columns.tolist()
     col = header.index(year)
     row = country_list.index(country)
-    radar_m = [df_radar.iloc[0+row, col], df_radar.iloc[382+row, col], df_radar.iloc[764+row, col]]
-    radar_w = [df_radar.iloc[191+row, col], df_radar.iloc[573+row, col], df_radar.iloc[955+row, col]]
+    afg_idx = df_radar.index[df_radar['Country Name'] == 'Afghanistan'].tolist()
+
+    radar_m = [df_radar.iloc[afg_idx[0]+row, col], df_radar.iloc[afg_idx[2]+row, col], df_radar.iloc[afg_idx[4]+row, col]]
+    radar_w = [df_radar.iloc[afg_idx[1]+row, col], df_radar.iloc[afg_idx[3]+row, col], df_radar.iloc[afg_idx[5]+row, col]]
 
     fig = go.Figure()
 
@@ -95,7 +99,7 @@ def update_chart(country, year):
     ))
 
     fig.update_layout(
-        title= f'Scores for ease of setting up a business according to gender in {df_radar.iloc[0+row,0]}',
+        title= f'Scores for ease of setting up a business according to gender in {df_radar.iloc[0+row,0]} in {header[col]}',
         polar=dict(
             radialaxis=dict(
             visible=True,
