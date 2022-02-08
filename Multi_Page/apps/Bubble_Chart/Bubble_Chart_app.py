@@ -28,7 +28,6 @@ from Multi_Page.StartingBusiness import app
 
 df_path = os.path.join("apps", "Bubble_Chart")
 df_general = pd.read_csv(os.path.join(df_path, "DBBubbleChart.csv"))
-#df_by_region = pd.read_csv(os.path.join(df_path, "DBBubbleChart_Regional.csv"))
 df_by_region= df_general.groupby(['Region', 'Year'], as_index=False).mean()
 
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #
@@ -36,8 +35,6 @@ external_stylesheets = [dbc.themes.COSMO]
 
 region_bubblechart_list = df_general['Region'].unique()
 year_bubblechart_list = df_general['Year'].unique()
-
-# app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # -------------------------------------------Web Page Style----------------------------------------------------------- #
 bubblechart_page = dbc.Container(fluid=True, children=[

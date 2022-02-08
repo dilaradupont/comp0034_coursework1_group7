@@ -41,9 +41,4 @@ df['Procedures required (Average)'] = df[[
     'Procedures required - Men (number)', 'Procedures required - Women (number)']].mean(axis=1)
 df['Time (Average)'] = df[['Time - Men (days)', 'Time - Women (days)']].mean(axis=1)
 
-# Crate a database containing the regional data only
-# df_by_region = df.groupby(['Region', 'Year'], as_index=False).mean()
-
-
 df.to_csv('DBBubbleChart.csv', index=False)
-# df_by_region.to_csv('DBBubbleChart_Regional.csv', index=False)
