@@ -8,6 +8,7 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import pandas as pd
 
+pd.options.mode.chained_assignment = None
 
 external_stylesheets = [dbc.themes.COSMO]
 
