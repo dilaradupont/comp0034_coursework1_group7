@@ -1,3 +1,7 @@
+"""
+Python file created for the reorganization of the database as a starting point for the page with bubble chart and table.
+Using melt and pivot to combine and switch columns with rows, and mean to create average values.
+"""
 import pandas as pd
 
 df = pd.read_csv('./DBJoint.csv')
@@ -9,6 +13,7 @@ indicator_codes_list = ['IC.REG.COST.PC.MA.ZS.DFRN', 'IC.REG.COST.PC.FE.ZS.DRFN'
                         'IC.REG.PROC.FE.NO', 'IC.REG.DURS.MA.DY', 'IC.REG.DURS.FE.DY']
 
 df = df[df['Indicator Code'].isin(indicator_codes_list)]
+
 # Remove 'Starting a Business' and "-Score" from indicator name
 df['Indicator Name'] = df['Indicator Name'].str.replace("Starting a business: ", "")
 df['Indicator Name'] = df['Indicator Name'].str.strip()
