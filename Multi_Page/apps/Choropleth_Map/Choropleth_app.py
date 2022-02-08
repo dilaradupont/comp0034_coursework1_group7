@@ -18,7 +18,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import pandas as pd
-import  os
+import os
 from Multi_Page.StartingBusiness import app
 
 # Disabling SettingCopyWarning from pandas as it was flagging a (falsely) potentially confusing "chained" assignment
@@ -31,7 +31,7 @@ external_stylesheets = [dbc.themes.COSMO]
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
 # Import data from the correct directory and add lists for dropdown menus
 df_path = os.path.join("apps", "Choropleth_Map")
-df_cm_bc = pd.read_csv(os.path.join(df_path,"DBresorted_cm.csv"))
+df_cm_bc = pd.read_csv(os.path.join(df_path, "DBresorted_cm.csv"))
 #df_cm_bc = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
 
 indicator_dropdown_list = ['Starting a business - Score',
