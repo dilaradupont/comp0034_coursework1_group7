@@ -1,42 +1,43 @@
+"""
+This file is used to code the page on dash showing the interactive bubblechart map and data table. The charts have been
+developed using the plotly express library. The web page has been designed using dash (dcc and html). The interactivity
+is instead created using app callbacks with dash dependencies (input, output).
+
+The code should return a web page divided in four rows:
+- a top row containing Gender and Region selectors
+- a middle row with the bubble chart for the selected combination of gender and region and an option to animate by year
+(NOTE: if both men and women are selected, this row will actually contain two columns, with one graph per column representing
+each of the gender groups)
+- a row containing a second title and a year selection for the data table
+- a row containing the data [actual value, not score] for the chosen gender, region, and year.
+
+Used PEP 8 - style guide for python
+"""
+
+# ------------------------------------------------Imports------------------------------------------------------------- #
 import plotly.express as px
 import plotly.graph_objects as go
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output, State
-from dash.exceptions import PreventUpdate
+from dash.dependencies import Input, Output
 import pandas as pd
-from IPython.display import display
+import os.path
+from Multi_Page.StartingBusiness import app
 
-import plotly.io as pio
-
-pio.renderers.default = "browser"
-
-''' THINGS TO DISCUSS
-- Top of the page, select men, women, average
-- selective legend -> done automatically
-- how do we want to handle the case in which one of the parameters is 0? Right now we are removing it
-
-
-TO DO:
-- try implementing a bar at the bottom of this chart to select the different regions first
-    if you can easily make that work, move on to implementing the plotly graph objects technique of clicking on dots
-- add external border pink / blue
-- add adaptive sizing
-- remove everything but region, year, cost from hover label
-- see if you can add trace 
-'''
-
-# df_by_region = pd.read_csv('./Data Set/DBBubbleChart_Regional.csv')
+#df_path = os.path.join("apps", "Bubble_Chart")
 df_general = pd.read_csv('./Data Set/DBBubbleChart.csv')
 
+# -----------------------------------------------StyleSheet----------------------------------------------------------- #
 external_stylesheets = [dbc.themes.COSMO]
+
 region_bubblechart_list = df_general['Region'].unique()
 year_bubblechart_list = df_general['Year'].unique()
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+# -------------------------------------------Web Page Style----------------------------------------------------------- #
 bubblechart_page = dbc.Container(fluid=True, children=[
     dbc.Row(dbc.Col(children=[html.Br()])),
 
