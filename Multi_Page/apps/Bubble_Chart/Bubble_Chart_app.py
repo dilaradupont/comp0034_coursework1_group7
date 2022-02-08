@@ -237,8 +237,6 @@ def update_chart(gender, region, year):
             dbc.Row(children=[dbc.Col(children=[dcc.Graph(id="bubble_chart_W", figure=fig_W)], style={'left': '50%'}),
                               dbc.Col(children=[dcc.Graph(id="bubble_chart_M", figure=fig_M)], style={'left': '50%'})])]
 
-
-
         tab = go.Figure(
             data=[go.Table(header=dict(values=list([hover_header, 'Time - Women (days)',
                                                     'Time - Men (days)',
@@ -256,8 +254,6 @@ def update_chart(gender, region, year):
 
     return tab, children_bc
 
-
-# fig, tab,
 
 if __name__ == '__main__':
     app.run_server(debug=True)
