@@ -28,7 +28,7 @@ from Multi_Page.StartingBusiness import app
 
 df_path = os.path.join("apps", "Bubble_Chart")
 df_general = pd.read_csv(os.path.join(df_path, "DBBubbleChart.csv"))
-df_by_region= df_general.groupby(['Region', 'Year'], as_index=False).mean()
+df_by_region = df_general.groupby(['Region', 'Year'], as_index=False).mean()
 
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #
 external_stylesheets = [dbc.themes.COSMO]
