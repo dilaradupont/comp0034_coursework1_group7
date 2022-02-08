@@ -1,4 +1,4 @@
-# Week 1:
+# Week 1
 
 ## Done:
 - Creation of Github repository
@@ -16,6 +16,7 @@
 - None
 
 ### Next meeting: 20/01/22 14:00 - 15:00
+<br>
 
 # Week 2
 
@@ -41,8 +42,9 @@ women, radar)
 
 ### Next meeting: 24/01/22 11:00 - 13:00 - informal meeting between classes
 ### Next online meeting: 27/01/22 15:00
+<br>
 
-# Week 2
+# Week 3
 
 ## Done
 - The subgroups started working on the dash plots using both plotly express and go libraries
@@ -65,4 +67,26 @@ women, radar)
 - none
 
 ### Next meeting: 31/01/22 11:00 - 13:00 , 17:00 - 19:00 - informal meeting between classes
-### Next online meeting: 27/01/22 14:00
+### Next online meeting: 03/02/22 14:00
+<br>
+
+# Week 4
+
+## Done
+- Chloropleth map: styling finalised
+- Radar chart: 2 chart comparison version finalised. Faced an issue when nothing is selected in the dropdown: needs to be solved before next informal meeting (07/02)
+- Bubblechart: Bubble chart innteractivity solved
+- Incorporated charts on the multipage. 
+
+## To do for next week
+- Look up different testing libraries
+- Go over testing material 
+- Start testing from 08/02 (next tutorial)
+
+# Issues 
+- none
+
+### Next meeting: 07/02/22 11:00 - 13:00 - informal meeting between classes
+### Next online meeting: 10/02/22 14:00
+<br>
+
