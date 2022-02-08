@@ -7,6 +7,7 @@ import plotly.express as px
 from Multi_Page.apps.Bubble_Chart import Bubble_Chart_app
 from Multi_Page.apps.Choropleth_Map import Choropleth_app
 from Multi_Page.apps.Contact import Contact_app
+from Multi_Page.apps.Radar_chart import Radar_Chart_app
 
 from Multi_Page.StartingBusiness import app
 
@@ -51,6 +52,8 @@ def display_page(pathname):
         return Bubble_Chart_app.bubblechart_page
     elif pathname == '/':
         return Choropleth_app.cm_bc_page #to be changed with about us
+    elif pathname == '/radio-chart':
+        return Radar_Chart_app.radar_page
     else:
         return '404 Page Not Found'
 

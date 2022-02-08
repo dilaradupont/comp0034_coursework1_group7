@@ -8,6 +8,8 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
+import os
+from Multi_Page.StartingBusiness import app
 
 pio.renderers.default = "browser"
 
@@ -16,12 +18,13 @@ pio.renderers.default = "browser"
 external_stylesheets = [dbc.themes.COSMO]
 
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
-
-df_radar = pd.read_csv('Multi_Page/apps/Radar_chart/DBRadar.csv')
+# Import data from the correct directory and add lists for dropdown menus
+df_path = os.path.join("apps", "Radar_chart")
+df_radar = pd.read_csv(os.path.join(df_path, "DBRadar.csv"))
 country_list = df_radar['Country Name'].unique().tolist()
 year_list = list(range(2006, 2021))
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # -------------------------------------------Web Page Style----------------------------------------------------------- #
 # Creating the container as two columns of different widths to incorporate 2 radar charts, with 2 dropdown menus each. 
@@ -169,8 +172,7 @@ def update_chart(country, year, country1, year1):
         ))
 
         fig.update_layout(
-            title_text= f'Scores for setting up a business according to gender\
-             in <br>{df_radar.iloc[0+row,0]} in {header[col]}',
+            title_text= f'Scores for setting up a business according to gender in {df_radar.iloc[0+row,0]} in {header[col]}',
             title_x=0.5,
             polar=dict(
                 radialaxis=dict(
