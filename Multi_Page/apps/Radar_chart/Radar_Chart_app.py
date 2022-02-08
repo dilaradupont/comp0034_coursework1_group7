@@ -1,3 +1,5 @@
+# ------------------------------------------------Imports------------------------------------------------------------- #
+
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc
@@ -9,13 +11,19 @@ import plotly.io as pio
 
 pio.renderers.default = "browser"
 
-df_radar = pd.read_csv('./Data Set/DBRadar.csv')
+# -----------------------------------------------StyleSheet----------------------------------------------------------- #
 
 external_stylesheets = [dbc.themes.COSMO]
+
+# ------------------------------------------------Data&Lists---------------------------------------------------------- #
+
+df_radar = pd.read_csv('./Data Set/DBRadar.csv')
 country_list = df_radar['Country Name'].unique()
 year_list = list(range(2006, 2021))
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+# -------------------------------------------Web Page Style----------------------------------------------------------- #
 
 radar_page = dbc.Container(fluid=True, children=[
     dbc.Row(
@@ -74,7 +82,11 @@ radar_page = dbc.Container(fluid=True, children=[
     ]),
 ])
 
+# -----------------------------------------------Layout--------------------------------------------------------------- #
+
 app.layout = radar_page
+
+# -------------------------------------------Interactivity and Charts------------------------------------------------- #
 
 @app.callback(
     [Output("radar_chart", "figure"), Output("radar_chart1", "figure")],
