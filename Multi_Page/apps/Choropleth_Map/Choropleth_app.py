@@ -32,9 +32,6 @@ external_stylesheets = [dbc.themes.COSMO]
 
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
 # Import data from the correct directory and add lists for dropdown menus
-#df_path = os.path.join("apps", "Choropleth_Map")
-#df_cm_bc = pd.read_csv(os.path.join(df_path, "DBresorted_cm.csv"))
-#df_cm_bc = pd.read_csv('apps1/Choropleth_Map/DBresorted_cm.csv')
 
 df_path = Path(__file__).parent.joinpath("DBResorted_cm.csv")
 df_cm_bc = pd.read_csv(df_path)
