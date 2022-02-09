@@ -33,8 +33,8 @@ external_stylesheets = [dbc.themes.COSMO]
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
 # Import data from the correct directory and add lists for dropdown menus
 
-df_path = Path(__file__).parent.joinpath("DBResorted_cm.csv")
-df_cm_bc = pd.read_csv(df_path)
+df_path = Path(__file__).parent.joinpath("DBresorted_cm.csv")
+df_cm_bc = pd.read_csv(df_path
 
 indicator_dropdown_list = ['Starting a business - Score',
                            'Starting a business: Cost - Average (% of income per capita) - Score',
