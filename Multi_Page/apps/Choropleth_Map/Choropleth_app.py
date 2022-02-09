@@ -12,12 +12,15 @@ Used PEP 8 - style guide for python
 
 # ------------------------------------------------Imports------------------------------------------------------------- #
 
-import plotly.express as px
+from pathlib import Path
+
 import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import pandas as pd
+
 from Multi_Page.StartingBusiness import app
 
 # Disabling SettingCopyWarning from pandas as it was flagging a (falsely) potentially confusing "chained" assignment
@@ -29,8 +32,12 @@ external_stylesheets = [dbc.themes.COSMO]
 
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
 # Import data from the correct directory and add lists for dropdown menus
+#df_path = os.path.join("apps", "Choropleth_Map")
+#df_cm_bc = pd.read_csv(os.path.join(df_path, "DBresorted_cm.csv"))
+#df_cm_bc = pd.read_csv('apps1/Choropleth_Map/DBresorted_cm.csv')
 
-df_cm_bc = pd.read_csv('apps/Choropleth_Map/DBresorted_cm.csv')
+df_path = Path(__file__).parent.joinpath("DBResorted_cm.csv")
+df_cm_bc = pd.read_csv(df_path)
 
 indicator_dropdown_list = ['Starting a business - Score',
                            'Starting a business: Cost - Average (% of income per capita) - Score',
