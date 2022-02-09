@@ -26,8 +26,8 @@ import pandas as pd
 import os.path
 from Multi_Page.StartingBusiness import app
 
-#df_path = os.path.join("apps", "Bubble_Chart")
-df_general = pd.read_csv('./Data Set/DBBubbleChart.csv')
+#df_path = os.path.join("apps1", "Bubble_Chart")
+df_general = pd.read_csv('./DBBubbleChart.csv')
 
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #
 external_stylesheets = [dbc.themes.COSMO]
