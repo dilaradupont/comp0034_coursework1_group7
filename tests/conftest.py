@@ -10,8 +10,7 @@ def pytest_setup_options():
     # options.add_argument('--start-maximized')
     return options
 
-
 @pytest.fixture(scope='function')
-def run_choropleth_app(dash_duo):
+def run_bubble_app(dash_duo):
     app = import_app("Multi_Page.index")
     yield dash_duo.start_server(app)

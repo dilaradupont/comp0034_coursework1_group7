@@ -25,9 +25,13 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import os.path
 from Multi_Page.StartingBusiness import app
+from pathlib import Path
 
-df_path = os.path.join("apps", "Bubble_Chart")
-df_general = pd.read_csv(os.path.join(df_path, "DBBubbleChart.csv"))
+df_path = Path(__file__).parent.joinpath("DBBubbleChart.csv")
+
+#df_path = os.path.join("apps", "Bubble_Chart")
+#df_general = pd.read_csv(os.path.join(df_path, "DBBubbleChart.csv"))
+df_general = pd.read_csv(df_path)
 df_by_region = df_general.groupby(['Region', 'Year'], as_index=False).mean()
 
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #

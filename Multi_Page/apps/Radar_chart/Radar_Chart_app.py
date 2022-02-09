@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import os
 from Multi_Page.StartingBusiness import app
+from pathlib import Path
 
 pio.renderers.default = "browser"
 
@@ -19,8 +20,13 @@ external_stylesheets = [dbc.themes.COSMO]
 
 # ------------------------------------------------Data&Lists---------------------------------------------------------- #
 # Import data from the correct directory and add lists for dropdown menus
-df_path = os.path.join("apps", "Radar_chart")
-df_radar = pd.read_csv(os.path.join(df_path, "DBRadar.csv"))
+# df_path = os.path.join("apps", "Radar_chart")
+# df_radar = pd.read_csv(os.path.join(df_path, "DBRadar.csv"))
+
+df_path = Path(__file__).parent.joinpath("DBRadar.csv")
+df_radar = pd.read_csv(df_path)
+
+
 country_list = df_radar['Country Name'].unique().tolist()
 year_list = list(range(2006, 2021))
 
