@@ -52,7 +52,8 @@ radar_page = dbc.Container(fluid=True, children=[
                          for x in country_list],
                 value=[],
                 id="country",
-                multi=False, 
+                multi=False,
+                clearable=False,
             ),
             html.H5('Select Year'),
             dcc.Dropdown(
@@ -61,6 +62,7 @@ radar_page = dbc.Container(fluid=True, children=[
                 value=[],
                 id="year",
                 multi=False,
+                clearable=False,
             ),
             html.Br(),
         ]),
@@ -73,6 +75,7 @@ radar_page = dbc.Container(fluid=True, children=[
                 value=[],
                 id="country1",
                 multi=False,
+                clearable=False,
             ),
             html.H5('Select Year'),
             dcc.Dropdown(
@@ -81,6 +84,7 @@ radar_page = dbc.Container(fluid=True, children=[
                 value=[],
                 id="year1",
                 multi=False,
+                clearable=False,
             ),
             html.Br(),
         ]),
