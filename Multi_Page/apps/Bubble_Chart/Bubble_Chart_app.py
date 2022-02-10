@@ -76,9 +76,10 @@ bubblechart_page = dbc.Container(fluid=True, children=[
                      children=[html.H5('Select Year', style={'text-align': 'center'}),
                                dcc.Dropdown(options=[{"label": x, "value": x}
                                                      for x in year_bubblechart_list],
-                                            value=2006,
+                                            value='2006',
                                             id="year",
-                                            multi=False)
+                                            multi=False,
+                                            clearable=False)
                                ], width={"size": 4, "offset": 4})]),
     dbc.Row([
         dbc.Col(children=[
