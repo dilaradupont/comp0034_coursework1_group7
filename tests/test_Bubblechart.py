@@ -7,18 +7,6 @@ from selenium.webdriver.common.keys import Keys
 import numpy as np
 
 
-def test_bc001_h1_headers(dash_duo, run_bubble_app):
-    """
-    GIVEN that the dash app is running
-    WHEN the user is on the bubble chart page
-    THEN there should be no H1 (html) headers in the page
-    """
-    time.sleep(5)
-    actual_list = dash_duo.find_elements("H1")
-    dash_duo.driver.implicitly_wait(3)
-    assert not actual_list
-
-
 def test_bc002_h2_headers(dash_duo, run_bubble_app):
     """
     GIVEN that the dash app is running
@@ -37,6 +25,18 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
             assert actual_list[h_i].text.casefold() == expected_list[h_i].casefold()
     else:
         raise AssertionError
+
+
+def test_bc001_h1_headers(dash_duo, run_bubble_app):
+    """
+    GIVEN that the dash app is running
+    WHEN the user is on the bubble chart page
+    THEN there should be no H1 (html) headers in the page
+    """
+    time.sleep(5)
+    actual_list = dash_duo.find_elements("H1")
+    dash_duo.driver.implicitly_wait(3)
+    assert not actual_list
 
 
 def test_bc003_h3_headers(dash_duo, run_bubble_app):
