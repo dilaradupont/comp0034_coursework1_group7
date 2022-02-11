@@ -1,0 +1,43 @@
+#indicator .VirtualizedSelectFocusedOption {
+  background-color: yellowgreen;
+  color: black;
+}
+
+#region .VirtualizedSelectFocusedOption {
+  background-color: yellowgreen;
+  color: black;
+}
+
+#income .VirtualizedSelectFocusedOption {
+  background-color: yellowgreen;
+  color: black;
+}
+
+#indicator .Select-menu-outer {
+  background-color: lightgray;
+}
+
+#region .Select-menu-outer {
+  background-color: lightgray;
+}
+
+#income .Select-menu-outer {
+  background-color: lightgray;
+}
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #4CAF50;
+}
+P{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+body {
+  background-color: lightgray;
+}
+
+footer {
+  font-size: 1.2em;
+}

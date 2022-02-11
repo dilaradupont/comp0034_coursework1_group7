@@ -168,6 +168,7 @@ def update_output(indicator, region, income, year):
     fig_cm.update_layout(title=dict(font=dict(size=20)),
                          margin=dict(l=15, r=15, t=35, b=5),
                          coloraxis_colorbar=dict(title="Score"))
+    fig_cm.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
 
     # ------------------------------------------Bar Chart--------------------------------------------------------------#
 
@@ -178,6 +179,7 @@ def update_output(indicator, region, income, year):
     df_barchart = df_barchart.head(10)
     df_barchart = df_barchart[df_barchart[str(indicator)].notna()]
     df_barchart.sort_values(by=[str(indicator)], inplace=True, ascending=True)
+
 
     # Creating a list in order to change color of bar chart based on the position. List can take different dimensions
     # due to number of countries available for selected parameters. Thus creating a list for the top n positions with
@@ -211,6 +213,7 @@ def update_output(indicator, region, income, year):
 
     # Disabling the y-axes labels and title
     fig_bc.update_yaxes(visible=False, showticklabels=False)
+    fig_bc.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
 
     return fig_cm, fig_bc
 

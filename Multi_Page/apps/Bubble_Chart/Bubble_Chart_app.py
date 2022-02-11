@@ -173,6 +173,7 @@ def update_chart(gender, region, year):
         fig.update_layout(title=dict(font=dict(size=20)),
                           margin=dict(l=15, r=15, t=35, b=5),
                           autosize=True)
+        fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
         children_bc = dcc.Graph(id="bubble_chart", figure=fig)
         tab = go.Figure(
             data=[go.Table(header=dict(values=list([hover_header, x_header_tab, y_header_tab, z_header_tab])),
@@ -230,10 +231,12 @@ def update_chart(gender, region, year):
         fig_W.update_layout(title=dict(font=dict(size=20)),
                             margin=dict(l=15, r=15, t=35, b=5),
                             autosize=True)
+        fig_W.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
         fig_M.layout.autosize = True
         fig_M.update_layout(title=dict(font=dict(size=20)),
                             margin=dict(l=15, r=15, t=35, b=5),
                             autosize=True)
+        fig_M.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
 
         children_bc = [
             dbc.Row(children=[dbc.Col(children=[dcc.Graph(id="bubble_chart_W", figure=fig_W)], style={'left': '50%'}),
@@ -253,6 +256,7 @@ def update_chart(gender, region, year):
                                        df_tab['Cost - Women (% of income per capita)'],
                                        df_tab['Cost - Men (% of income per capita)']])
                            )])
+    tab.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)', })
 
     return tab, children_bc
 
