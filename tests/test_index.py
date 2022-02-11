@@ -11,7 +11,7 @@ def test_in001_title(dash_duo, start_main_app):
     WHEN the page is opened on the browser
     THEN check that the page title is correct and set to 'Business'
     """
-    dash_duo.wait_for_element("h5", timeout=4)
+    dash_duo.wait_for_element("h5")
     app_title = dash_duo.driver.title
     time.sleep(2)
     assert 'Business' == app_title, "The app title should be 'Business'"

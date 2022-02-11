@@ -13,7 +13,7 @@ def test_bc001_h1_headers(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page
     THEN there should be no H1 (html) headers in the page
     """
-    dash_duo.wait_for_element("H5", timeout=10)
+    time.sleep(5)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
@@ -27,7 +27,7 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
             "Relationship between factors involved in starting a business",
             "Data for the chosen geographic area"
     """
-    dash_duo.wait_for_element("H5", timeout=10)
+    time.sleep(5)
     actual_list = dash_duo.find_elements("H2")
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
@@ -57,7 +57,7 @@ def test_bc004_h4_headers(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page
     THEN there only be one H4 header and it should be "Calculated based on absolute score"
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    time.sleep(5)
     actual_list = dash_duo.find_elements("H4")
     expected_list = ["Calculated based on absolute score"]
     dash_duo.driver.implicitly_wait(3)
@@ -91,7 +91,7 @@ def test_bc006_gender_selector(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page
     THEN the gender checklist should contain both 'Women' and 'Men'
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    time.sleep(5)
     dash_duo.driver.implicitly_wait(3)
     expected_options = ['Women', 'Men']
     for option in expected_options:
