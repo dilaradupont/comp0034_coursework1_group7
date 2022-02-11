@@ -13,7 +13,7 @@ def test_bc001_h1_headers(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page
     THEN there should be no H1 (html) headers in the page
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
@@ -27,7 +27,7 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
             "Relationship between factors involved in starting a business",
             "Data for the chosen geographic area"
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H2")
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
@@ -45,7 +45,7 @@ def test_bc003_h3_headers(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page
     THEN there should be no H3 (html) headers in the page
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H3")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
@@ -196,7 +196,7 @@ def test_bc012_slider(dash_duo, run_bubble_app):
     WHEN the user is on the bubble chart page and they go through every year in the slider
     THEN the year selected in the slider should match that found under the graph
     """
-    dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=15)
     time.sleep(5)
     time_click = dash_duo.find_element('#bubble_chart > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.slider-container > g > rect.slider-rail-touch-rect')
     year = 2006
