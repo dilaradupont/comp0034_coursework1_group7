@@ -15,7 +15,7 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
             "Relationship between factors involved in starting a business",
             "Data for the chosen geographic area"
     """
-    time.sleep(5)
+    time.sleep(3)
     actual_list = dash_duo.find_elements("H2")
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
@@ -27,12 +27,13 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
         raise AssertionError
 
 
-def test_bc001_h1_headers(dash_duo, run_bubble_app):
+def test_bc001_h1_headers(dash_duo, start_main_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the bubble chart page
     THEN there should be no H1 (html) headers in the page
     """
+    dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
     time.sleep(5)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
