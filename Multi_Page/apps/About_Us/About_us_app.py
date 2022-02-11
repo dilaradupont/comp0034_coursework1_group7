@@ -7,13 +7,15 @@ from dash import html
 from Multi_Page.StartingBusiness import app
 import base64
 
-# import dash_html_components as html
 
+
+#Loading the picture
 
 test_png = Path(__file__).parent.joinpath("Screenshot_1.png")
 test_base64 = base64.b64encode(open(test_png, 'rb').read()).decode('ascii')
 
-resize = "(max-width: 500px) 120px,(max-width: 991px) 303px,800px"
+#Configuring the Layout
+
 about_us = dbc.Container(fluid=True, children=[
     dbc.Row(
         dbc.Col(children=[html.Br()])),
