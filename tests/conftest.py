@@ -8,7 +8,7 @@ def pytest_setup_options():
     # Uncomment the following if testing on GitHub actions, the browser needs to run in headless mode
     options.add_argument('--disable-gpu')
     options.add_argument('--headless') # this is commented out to automatically open the test in a new chrome window
-    options.add_argument('--start-maximized')
+    # options.add_argument('--start-maximized')
     return options
 
 
