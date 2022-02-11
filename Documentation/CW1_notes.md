@@ -9,7 +9,7 @@ identified in the potential entrepreneurs wanting to start a business. However, 
 that the app will be used by local administrative authorities to help them realize the possible areas of improvement to
 increase entrepreneurial attractiveness. Finally, as the app will be accessible to anyone, the team expects it to become
 a benchmark for students or professionals interested in the research field. Considering the three groups of target
-audience, three different personas have been developed.
+audience, three different personas have been developed. 
 
 #### Persona 1: Potential Entrepreneurs
 
@@ -197,3 +197,33 @@ I would say major things to focus on are:
 - colormap title/legend always set to 'Score' (done)
 - look at plotly go styling objects and see if some can apply
 - check adding top 10 bar chart/list on the side (concerns: overcrowded)
+
+## Radar Chart
+Another useful type of chart that can be used is the radar chart. They would enable the app user to compare the inequalities in setting up a business based on gender. For each combination of country and year, selected through two seperate dropdown menus, there would be a different chart displayed. The chart would be similar to the sketch shown below:
+
+<p align="center">
+   <img width="500" height="350" src=../Images/Sketch_radar.jpeg>
+</p>
+
+Two different charts would appear on the page, so that the user could compare the scores for different combinations of countries and years.
+
+## Starting a Business Page Layout
+### Intro
+The aim of our app is to encourage entrepreneurs from all around the world to start up their business. We do that by making data more accessible about the ease of setting up a business in a variety of countries and regions, based on different indicators: the number of procedures required, the cost, the entrepreneur's gender and the time required to set up a business. This available data is displayed in a variety of charts, and is aimed not only at entrepreneurs, but also anyone interested in finding out more about the factors that might influence the start up of a business. 
+### Questions
+Are you an entrepreneur? A local administrator? Or simply a student? Our range of charts will help you figure out the impact certain regions or countries have on the ease of starting up a business. 
+
+Our choropleth map not only enables you to choose which scores to display (time, cost, number of procedures, overall), but also to see the evolution of those scores in time by clicking on the play button on the year slider. Moreover, you can focus on specific geographical regions or income groups listed in a dropdown menu, and identify which are the best countries to start up a business by looking at the bar chart on the side. 
+
+If you want to analyse the relationship between the scores in time, cost and number of procedures required, the bubble chart displays how the indicators influence each other. You can tick boxes to select which regions and gender you want to look at. Below the bubble chart, you can find a table that is updated with the bubble chart, displaying the actual data for each indicator, rather than the given scores. 
+
+If you are looking for a more detailed display of the gender inequalities in setting up a business, our radar chart will enable you to compare the number of procedures and time required to set up a business, as well as its cost, according to the entrepeneurs' gender. Clicking on 'Men' or 'Women' in the legend, will filter out the opposite option, enabling to focus on a single gender. 
+### Sources 
+The data used to create our graphs, comes from:
+...
+### Footer 
+Organisation name
+## About Us Page Layout
+### Our organisation and members
+We are a team of four engineering students, who are completing a project on displaying data in a non-misleading way. Our aim was to create a range of charts, that would be able show which factors influence the ease of starting up a business.
+(Team Picture)
