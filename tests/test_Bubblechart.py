@@ -205,4 +205,3 @@ def test_bc012_slider(dash_duo, run_bubble_app):
         year += 1
 
 
-
