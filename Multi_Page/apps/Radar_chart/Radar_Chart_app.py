@@ -86,6 +86,7 @@ radar_page = dbc.Container(fluid=True, children=[
                 clearable=False,
             ),
             html.Br(),
+            html.Br(),
         ]),
     ]),
 ])
