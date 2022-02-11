@@ -13,19 +13,17 @@ each of the gender groups)
 
 Used PEP 8 - style guide for python
 """
-
 # ------------------------------------------------Imports------------------------------------------------------------- #
+
+from pathlib import Path
+import dash_bootstrap_components as dbc
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import dash
-import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import pandas as pd
-import os.path
 from Multi_Page.StartingBusiness import app
-from pathlib import Path
 
 df_path = Path(__file__).parent.joinpath("DBBubbleChart.csv")
 
@@ -71,15 +69,15 @@ bubblechart_page = dbc.Container(fluid=True, children=[
              html.H4("Calculated based on absolute score", style={'text-align': 'center'}),
              dbc.Col(id='bubble_chart_col', style={'left': '50%'}),
              ]),
-    dbc.Row([html.Br(), html.Hr(),html.H2("Data for the chosen geographic area", style={'text-align': 'center'})]),
+    dbc.Row([html.Br(), html.Hr(), html.H2("Data for the chosen geographic area", style={'text-align': 'center'})]),
     dbc.Row([dbc.Col(
-                     children=[html.H5('Select Year', style={'text-align': 'center'}),
-                               dcc.Dropdown(options=[{"label": x, "value": x}
-                                                     for x in year_bubblechart_list],
-                                            value=2006,
-                                            id="year",
-                                            multi=False)
-                               ], width={"size": 4, "offset": 4})]),
+        children=[html.H5('Select Year', style={'text-align': 'center'}),
+                  dcc.Dropdown(options=[{"label": x, "value": x}
+                                        for x in year_bubblechart_list],
+                               value=2006,
+                               id="year",
+                               multi=False)
+                  ], width={"size": 4, "offset": 4})]),
     dbc.Row([
         dbc.Col(children=[
             dcc.Graph(id="values_table"),
@@ -96,6 +94,13 @@ app.layout = bubblechart_page
     [Input("gender", "value")], [Input("region", "value")],
     [Input("year", "value")])
 def update_chart(gender, region, year):
+    """
+
+    :param gender:
+    :param region:
+    :param year:
+    :return:
+    """
     if gender == [1]:
         x_header_fig = 'Time - Women (days)- Score'
         y_header_fig = 'Procedures required - Women (number) - Score'

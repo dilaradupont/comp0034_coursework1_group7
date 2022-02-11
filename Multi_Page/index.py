@@ -1,20 +1,15 @@
-import dash
-from dash import html, dcc
 import dash_bootstrap_components as dbc
 from dash import Input, Output
-import pandas as pd
-import plotly.express as px
+from dash import html, dcc
+from Multi_Page.StartingBusiness import app
 from Multi_Page.apps.Bubble_Chart import Bubble_Chart_app
 from Multi_Page.apps.Choropleth_Map import Choropleth_app
-from Multi_Page.apps.Contact import Contact_app
 from Multi_Page.apps.Radar_chart import Radar_Chart_app
-
-from Multi_Page.StartingBusiness import app
 
 app.title = "Business"
 
-#---------------------------------------------------------------
-#Creating the Navigation Bar
+# -----------------------------------------Creating the Navigation Bar-------------------------------------------------#
+
 navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(dbc.NavLink("About us", href="/about-us")),
@@ -30,8 +25,6 @@ navbar = dbc.NavbarSimple(
     links_left=True,
     fluid=True,
     sticky="top",
-
-
 )
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -39,12 +32,12 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-#index_layout = Choropleth_app.cm_bc_page
+
+# index_layout = Choropleth_app.cm_bc_page
 
 
 @app.callback(Output('page-content', 'children'),
               Input('url', 'pathname'))
-
 def display_page(pathname):
     if pathname == '/choropleth-map':
         return Choropleth_app.cm_bc_page
