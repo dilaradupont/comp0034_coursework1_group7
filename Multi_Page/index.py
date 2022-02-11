@@ -31,7 +31,12 @@ navbar = dbc.NavbarSimple(
     fluid=True,
     sticky="top",
 )
+
+#setting up the footer
+
 footer = html.Footer("N. Zavaropoulos , D.D. Dupont, C. Vanelli Coralli, A. Ripa - IFP")
+
+# seeting up the the front page text
 
 Welcome_text = dbc.Container(fluid=True, children=[
     dbc.Row(
@@ -87,6 +92,8 @@ Welcome_text = dbc.Container(fluid=True, children=[
 
 ]
                              , id="welcome-page")
+
+#setting up the layout
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
