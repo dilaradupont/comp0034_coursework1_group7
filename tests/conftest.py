@@ -19,3 +19,7 @@ def start_main_app(dash_duo):
 @pytest.fixture(scope='function')
 def run_bubble_app(dash_duo, start_main_app):
     yield dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
+
+@pytest.fixture(scope='function')
+def run_radar_app(dash_duo, start_main_app):
+    yield dash_duo.driver.get('http://127.0.0.1:8050/radar-chart')

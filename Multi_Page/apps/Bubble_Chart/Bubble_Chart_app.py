@@ -144,7 +144,9 @@ def update_chart(gender, region, year):
 
     df = df.sort_values(
         by=['Region', 'Year'])  # this allows to maintain the color constant (and to not change the year)
+
     df_tab = df_tab[df_tab['Year'] == int(year)]
+
     if len(gender) != 2:
         df = df.dropna(subset=[x_header_fig, y_header_fig, size_header_fig])
         df = df.loc[
