@@ -1,13 +1,13 @@
 # Week 1
 
-## Done:
+## Done
 - Creation of Github repository
 - Decision of Dataset to be used
 - Set-up of weekly meetings
 - Discussion on course of action
 - Exploration of useful gitHub features
 
-## To do:
+## To do
 - Experiment with Github and Github branches
 - Explore the dataset and brainstorm graph ideas
 - Explore Week1 material
@@ -87,6 +87,23 @@ women, radar)
 - none
 
 ### Next meeting: 07/02/22 11:00 - 13:00 - informal meeting between classes
-### Next online meeting: 10/02/22 14:00
+### Meeting to finalise coursework: 11/02/22 14:00 - 20:00 - meeting in engineering hub room 211
 <br>
+
+# Week 5
+
+## Done
+- All charts were finalised
+- All tests were executed
+
+## To do for next week
+- Finalise the layout of the app
+- Add some notes about the process in the md
+- Submit the coursework
+
+# Issues 
+- none
+
+<br>
+
 
