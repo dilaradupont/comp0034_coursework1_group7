@@ -198,6 +198,15 @@ I would say major things to focus on are:
 - look at plotly go styling objects and see if some can apply
 - check adding top 10 bar chart/list on the side (concerns: overcrowded)
 
+## Radar Chart
+Another useful type of chart that can be used is the radar chart. They would enable the app user to compare the inequalities in setting up a business based on gender. For each combination of country and year, selected through two seperate dropdown menus, there would be a different chart displayed. The chart would be similar to the sketch shown below:
+
+<p align="center">
+   <img width="500" height="350" src=../Images/Sketch_radar.jpeg>
+</p>
+
+Two different charts would appear on the page, so that the user could compare the scores for different combinations of countries and years.
+
 ## Starting a Business Page Layout
 ### Intro
 The aim of our app is to encourage entrepreneurs from all around the world to start up their business. We do that by making data more accessible about the ease of setting up a business in a variety of countries and regions, based on different indicators: the number of procedures required, the cost, the entrepreneur's gender and the time required to set up a business. This available data is displayed in a variety of charts, and is aimed not only at entrepreneurs, but also anyone interested in finding out more about the factors that might influence the start up of a business. 
@@ -212,6 +221,9 @@ If you are looking for a more detailed display of the gender inequalities in set
 ### Sources 
 The data used to create our graphs, comes from:
 ...
-
 ### Footer 
 Organisation name
+## About Us Page Layout
+### Our organisation and members
+We are a team of four engineering students, who are completing a project on displaying data in a non-misleading way. Our aim was to create a range of charts, that would be able show which factors influence the ease of starting up a business.
+(Team Picture)
