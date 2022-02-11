@@ -179,7 +179,6 @@ def update_output(indicator, region, income, year):
     df_barchart = df_barchart[df_barchart[str(indicator)].notna()]
     df_barchart.sort_values(by=[str(indicator)], inplace=True, ascending=True)
 
-
     # Creating a list in order to change color of bar chart based on the position. List can take different dimensions
     # due to number of countries available for selected parameters. Thus creating a list for the top n positions with
     # n between 0 and 10

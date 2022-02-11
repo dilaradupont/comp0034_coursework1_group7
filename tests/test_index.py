@@ -51,4 +51,3 @@ def test_in003_nav(dash_duo, start_main_app):
     forward_app_url = dash_duo.driver.current_url
     assert forward_app_url == current_app_url, 'The app should go forward to the Choropleth page'
 
-

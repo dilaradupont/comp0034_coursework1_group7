@@ -20,11 +20,9 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import pandas as pd
 from Multi_Page.StartingBusiness import app
 
 df_path = Path(__file__).parent.joinpath("DBBubbleChart.csv")

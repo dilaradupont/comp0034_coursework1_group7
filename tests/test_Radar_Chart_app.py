@@ -1,3 +1,7 @@
+"""
+This file is used to test the radar app page. It tests for titles, dropdown menus and finally simulates a possible
+interaction that a user could have with the app.
+"""
 from selenium.webdriver.common.keys import Keys
 
 

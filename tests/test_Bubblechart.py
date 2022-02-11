@@ -1,3 +1,7 @@
+"""
+This file is used to test the Bubble chart app page. It tests for titles, dropdown menus and finally simulates possible
+interactions that a user could have with the app.
+"""
 import time
 from selenium.webdriver.common.keys import Keys
 import numpy as np

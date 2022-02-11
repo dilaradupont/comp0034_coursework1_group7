@@ -1,3 +1,14 @@
+"""
+This file is used to code the we page on dash showing the interactive radar charts. The charts have been
+developed using the plotly express library. The web page has been designed using dash (dcc and html). The interactivity
+is instead created using app callbacks with dash dependencies (input, output).
+
+The code should return a web page divided in two columns. This is to allow comparison between selected countries for
+the chosen year.
+
+Used PEP 8 - style guide for python
+"""
+
 # ------------------------------------------------Imports------------------------------------------------------------- #
 
 from pathlib import Path
@@ -107,12 +118,14 @@ app.layout = radar_page
     [Input("country1", "value")], [Input("year1", "value")])
 def update_chart(country, year, country1, year1):
     """
+    This function is used to update the charts based on the user selected inputs for the country and the year. It
+    returns two figures for each of the radar chart to allow comparison.
 
-    :param country:
-    :param year:
-    :param country1:
-    :param year1:
-    :return:
+    :param [list] country: Country selected from the dropdown menu
+    :param [list] year: Year selected from the dropdown menu
+    :param [list] country1: Country selected from the dropdown menu (for comparison)
+    :param [list] year1: Year selected from the dropdown menu (for comparison)
+    :return: figures for radar charts
     """
 
     # Storing default values when nothing is selected in the dropdown menu
