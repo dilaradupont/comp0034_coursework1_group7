@@ -32,7 +32,7 @@ def test_bc002_h2_headers(dash_duo):
     app = import_app("Multi_Page.index")
     dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    dash_duo.wait_for_element("H5", timeout=4)
+    # dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H2")
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
@@ -53,7 +53,7 @@ def test_bc003_h3_headers(dash_duo):
     app = import_app("Multi_Page.index")
     dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    dash_duo.wait_for_element("H5", timeout=10)
+    # dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H3")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
