@@ -32,11 +32,11 @@ navbar = dbc.NavbarSimple(
     sticky="top",
 )
 
-#setting up the footer
+# setting up the footer
 
 footer = html.Footer("N. Zavaropoulos , D.D. Dupont, C. Vanelli Coralli, A. Ripa - IFP")
 
-# seeting up the the front page text
+# setting up the the front page text
 
 Welcome_text = dbc.Container(fluid=True, children=[
     dbc.Row(
@@ -90,10 +90,9 @@ Welcome_text = dbc.Container(fluid=True, children=[
             "as well as its cost, according to the entrepreneurs' gender. Clicking on 'Men' or 'Women' in the legend, will "
             "filter out the opposite option, enabling to focus on a single gender.")]),
 
-]
-                             , id="welcome-page")
+], id="welcome-page")
 
-#setting up the layout
+# setting up the layout
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
