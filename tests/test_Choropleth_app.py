@@ -5,6 +5,7 @@ interaction that a user could have with the app.
 import time
 import numpy as np
 from selenium.webdriver.common.keys import Keys
+from dash.testing.application_runners import import_app
 
 
 def test_ch001_h5_text_list_equals(dash_duo, start_main_app):
@@ -36,12 +37,14 @@ def test_ch002_h4_text_equals(dash_duo, start_main_app):
     assert h4_text.casefold() == 'Top 10 charts'.casefold()
 
 
-def test_ch003_h1_headers(dash_duo, start_main_app):
+def test_ch003_h1_headers(dash_duo):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be no H1 (html) headers in the page
     """
+    app = import_app("Multi_Page.index")
+    dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     # dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H1")

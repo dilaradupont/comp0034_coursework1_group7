@@ -5,6 +5,7 @@ interactions that a user could have with the app.
 import time
 from selenium.webdriver.common.keys import Keys
 import numpy as np
+from dash.testing.application_runners import import_app
 
 
 def test_bc001_h1_headers(dash_duo, start_main_app):
@@ -17,11 +18,10 @@ def test_bc001_h1_headers(dash_duo, start_main_app):
     dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
-    dash_duo.clear_storage()
     assert not actual_list
 
 
-def test_bc002_h2_headers(dash_duo, start_main_app):
+def test_bc002_h2_headers(dash_duo):
     """
     GIVEN that the dash app is running
     WHEN the user is on the bubble chart page
@@ -29,6 +29,8 @@ def test_bc002_h2_headers(dash_duo, start_main_app):
             "Relationship between factors involved in starting a business",
             "Data for the chosen geographic area"
     """
+    app = import_app("Multi_Page.index")
+    dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
     dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H2")
@@ -42,26 +44,29 @@ def test_bc002_h2_headers(dash_duo, start_main_app):
         raise AssertionError
 
 
-def test_bc003_h3_headers(dash_duo, start_main_app):
+def test_bc003_h3_headers(dash_duo):
     """
     GIVEN that the dash app is running
     WHEN the user is on the bubble chart page
     THEN there should be no H3 (html) headers in the page
     """
+    app = import_app("Multi_Page.index")
+    dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
     dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H3")
     dash_duo.driver.implicitly_wait(3)
-    dash_duo.clear_storage()
     assert not actual_list
 
 
-def test_bc004_h4_headers(dash_duo, start_main_app):
+def test_bc004_h4_headers(dash_duo):
     """
     GIVEN that the dash app is running
     WHEN the user is on the bubble chart page
     THEN there only be one H4 header and it should be "Calculated based on absolute score"
     """
+    app = import_app("Multi_Page.index")
+    dash_duo.start_server(app)
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
     # dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H4")
