@@ -15,7 +15,7 @@ def test_ch001_h5_text_list_equals(dash_duo, start_main_app):
     """
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     ref_list_h5 = ['Select Region', 'Select Income Group', 'Select Bar Chart Year', 'Select Indicator']
-    dash_duo.wait_for_element("h5", timeout=4)
+    # dash_duo.wait_for_element("h5", timeout=4)
     h5_list = dash_duo.find_elements('h5')
     h5_text_list = [h5_element.text for h5_element in h5_list]
     dash_duo.driver.implicitly_wait(3)
@@ -29,9 +29,10 @@ def test_ch002_h4_text_equals(dash_duo, start_main_app):
     THEN there should be only certain H4 (html) headers in the page
     """
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    dash_duo.wait_for_element("h4", timeout=4)
+    # dash_duo.wait_for_element("h4", timeout=4)
     h4_text = dash_duo.find_element('h4').text
     dash_duo.driver.implicitly_wait(3)
+    dash_duo.clear_storage()
     assert h4_text.casefold() == 'Top 10 charts'.casefold()
 
 
@@ -42,7 +43,7 @@ def test_ch003_h1_headers(dash_duo, start_main_app):
     THEN there should be no H1 (html) headers in the page
     """
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    dash_duo.wait_for_element("H5", timeout=4)
+    # dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list

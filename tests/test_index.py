@@ -36,7 +36,7 @@ def test_in003_nav(dash_duo, start_main_app):
          and forward on the browser
     THEN check that the page url is correct and changes every time
     """
-    dash_duo.wait_for_element("h3", timeout=4)
+    # dash_duo.wait_for_element("h3", timeout=4)
     # Navigate to the choropleth map page
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     time.sleep(2)

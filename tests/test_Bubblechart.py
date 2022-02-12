@@ -14,9 +14,10 @@ def test_bc001_h1_headers(dash_duo, start_main_app):
     THEN there should be no H1 (html) headers in the page
     """
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    # dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
+    dash_duo.clear_storage()
     assert not actual_list
 
 
@@ -29,7 +30,7 @@ def test_bc002_h2_headers(dash_duo, start_main_app):
             "Data for the chosen geographic area"
     """
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    # dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H2")
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
@@ -48,9 +49,10 @@ def test_bc003_h3_headers(dash_duo, start_main_app):
     THEN there should be no H3 (html) headers in the page
     """
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    # dash_duo.wait_for_element("H5", timeout=10)
+    dash_duo.wait_for_element("H5", timeout=10)
     actual_list = dash_duo.find_elements("H3")
     dash_duo.driver.implicitly_wait(3)
+    dash_duo.clear_storage()
     assert not actual_list
 
 
@@ -97,7 +99,7 @@ def test_bc006_gender_selector(dash_duo, start_main_app):
     THEN the gender checklist should contain both 'Women' and 'Men'
     """
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    dash_duo.wait_for_element("H5", timeout=4)
+    # dash_duo.wait_for_element("H5", timeout=4)
     dash_duo.driver.implicitly_wait(3)
     expected_options = ['Women', 'Men']
     for option in expected_options:
@@ -119,6 +121,7 @@ def test_bc007_region_selector(dash_duo, start_main_app):
                         'Middle East & North Africa', 'South Asia', 'Sub-Saharan Africa']
     for option in expected_options:
         assert option in dash_duo.find_element("#region").text
+        dash_duo.clear_storage()
 
 
 def test_bc008_year_selector(dash_duo, start_main_app):
@@ -128,7 +131,7 @@ def test_bc008_year_selector(dash_duo, start_main_app):
     THEN the year dropdown menu should contain all years between 2006 and 2020
     """
     dash_duo.driver.get('http://127.0.0.1:8050/bubble-chart')
-    dash_duo.wait_for_element("H5", timeout=4)
+    # dash_duo.wait_for_element("H5", timeout=4)
     dash_duo.driver.implicitly_wait(10)
     elements = []
 
