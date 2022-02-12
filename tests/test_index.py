@@ -11,7 +11,7 @@ def test_in001_title(dash_duo, start_main_app):
     WHEN the page is opened on the browser
     THEN check that the page title is correct and set to 'Business'
     """
-    time.sleep(3)
+    dash_duo.wait_for_element("h3", timeout=4)
     app_title = dash_duo.driver.title
     time.sleep(2)
     assert 'Business' == app_title, "The app title should be 'Business'"
@@ -23,7 +23,7 @@ def test_in002_app_url(dash_duo, start_main_app):
     WHEN the page is opened on the browser
     THEN check that the page url is correct and ends with 8050
     """
-    time.sleep(3)
+    dash_duo.wait_for_element("h3", timeout=4)
     app_url = dash_duo.driver.current_url
     time.sleep(2)
     assert '8050' in app_url, "The app url should finish in 8050"
@@ -36,7 +36,7 @@ def test_in003_nav(dash_duo, start_main_app):
          and forward on the browser
     THEN check that the page url is correct and changes every time
     """
-    time.sleep(3)
+    dash_duo.wait_for_element("h3", timeout=4)
     # Navigate to the choropleth map page
     dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     time.sleep(2)
