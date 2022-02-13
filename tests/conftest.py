@@ -14,7 +14,7 @@ def pytest_setup_options():
 
 @pytest.fixture(scope='function')
 def start_main_app(dash_duo):
-    app = import_app("Multi_Page.index")
+    app = import_app("Multi_Page.StartingBusiness")
     yield dash_duo.start_server(app)
 
 
