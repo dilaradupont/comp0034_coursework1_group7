@@ -9,7 +9,7 @@ from Multi_Page.StartingBusiness import app
 from Multi_Page.apps.About_Us import About_us_app
 from Multi_Page.apps.Bubble_Chart import Bubble_Chart_app
 from Multi_Page.apps.Choropleth_Map import Choropleth_app
-from Multi_Page.apps.Radar_chart import Radar_Chart_app
+from Multi_Page.apps.Radar_Chart import Radar_Chart_app
 
 app.title = "Business"
 

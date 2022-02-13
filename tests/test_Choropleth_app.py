@@ -5,93 +5,76 @@ interaction that a user could have with the app.
 import time
 import numpy as np
 from selenium.webdriver.common.keys import Keys
-from dash.testing.application_runners import import_app
 
 
-def test_ch001_h5_text_list_equals(dash_duo):
+def test_ch001_h5_text_list_equals(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be only certain H5 (html) headers in the page
     """
-    app = import_app("Multi_Page.index")
-    dash_duo.start_server(app)
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     ref_list_h5 = ['Select Region', 'Select Income Group', 'Select Bar Chart Year', 'Select Indicator']
-    # dash_duo.wait_for_element("h5", timeout=4)
+    dash_duo.wait_for_element("h5", timeout=4)
     h5_list = dash_duo.find_elements('h5')
     h5_text_list = [h5_element.text for h5_element in h5_list]
     dash_duo.driver.implicitly_wait(3)
     assert set(ref_list_h5) == set(h5_text_list)
 
 
-def test_ch002_h4_text_equals(dash_duo):
+def test_ch002_h4_text_equals(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be only certain H4 (html) headers in the page
     """
-    app = import_app("Multi_Page.index")
-    dash_duo.start_server(app)
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    # dash_duo.wait_for_element("h4", timeout=4)
+    dash_duo.wait_for_element("h4", timeout=4)
     h4_text = dash_duo.find_element('h4').text
     dash_duo.driver.implicitly_wait(3)
-    dash_duo.clear_storage()
     assert h4_text.casefold() == 'Top 10 charts'.casefold()
 
 
-def test_ch003_h1_headers(dash_duo):
+def test_ch003_h1_headers(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be no H1 (html) headers in the page
     """
-    app = import_app("Multi_Page.index")
-    dash_duo.start_server(app)
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    # dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H1")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
 
 
-def test_ch004_h2_headers(dash_duo, start_main_app):
+def test_ch004_h2_headers(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be no H2 (html) headers in the page
     """
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    # dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H2")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
 
 
-def test_ch005_h3_headers(dash_duo, start_main_app):
+def test_ch005_h3_headers(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth map page
     THEN there should be no H3 (html) headers in the page
     """
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
     dash_duo.wait_for_element("H5", timeout=4)
     actual_list = dash_duo.find_elements("H3")
     dash_duo.driver.implicitly_wait(3)
     assert not actual_list
 
 
-def test_ch006_dropdown_defaults(dash_duo):
+def test_ch006_dropdown_defaults(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth chart page
     THEN there should be certain default values for the dropdown menus
     """
-    app = import_app("Multi_Page.index")
-    dash_duo.start_server(app)
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    time.sleep(2)
     ref_dropdown_def_list = ['Starting a business - Score', '2006']
     dropdowns_id = ['#year', '#indicator']
     dropdown_def_list = []
@@ -102,14 +85,13 @@ def test_ch006_dropdown_defaults(dash_duo):
     assert set(ref_dropdown_def_list) == set(dropdown_def_list)
 
 
-def test_ch007_year_selector(dash_duo, start_main_app):
+def test_ch007_year_selector(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth chart page
     THEN the year dropdown menu should contain all years between 2006 and 2020
     """
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    dash_duo.wait_for_element("#year", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     dash_duo.driver.implicitly_wait(5)
     elements = []
 
@@ -122,14 +104,13 @@ def test_ch007_year_selector(dash_duo, start_main_app):
         assert str(year) in elements, f'{str(year)} is not in the dropdown menu'
 
 
-def test_ch008_slider(dash_duo, start_main_app):
+def test_ch008_slider(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth chart page and they go through every year in the slider
     THEN the year selected in the slider should match that found under the graph
     """
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    dash_duo.wait_for_element("#choropleth", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     time.sleep(3)
     time_click = dash_duo.find_element('#choropleth > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.slider-container > g > rect.slider-rail-touch-rect')
     year = 2006
@@ -143,7 +124,7 @@ def test_ch008_slider(dash_duo, start_main_app):
         year += 1
 
 
-def test_ch009_overall_interactivity(dash_duo, start_main_app):
+def test_ch009_overall_interactivity(dash_duo, run_choropleth_app):
     """
     GIVEN that the dash app is running
     WHEN the user is on the choropleth chart page and they filter the map using a specific region, indicator and income
@@ -151,10 +132,7 @@ def test_ch009_overall_interactivity(dash_duo, start_main_app):
          moves both the choropleth and bar chart to 2020
     THEN the values should match and be equal to the one taken from the dataframe (93.46734)
     """
-    app = import_app("Multi_Page.index")
-    dash_duo.start_server(app)
-    dash_duo.driver.get('http://127.0.0.1:8050/choropleth-map')
-    # dash_duo.wait_for_element("H5", timeout=4)
+    dash_duo.wait_for_element("H5", timeout=4)
     time.sleep(3)
     # Choose the indicator and check it is selected and displayed in the title of the choropleth map
     indicator_input = dash_duo.find_element('#indicator input')
