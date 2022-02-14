@@ -196,21 +196,3 @@ def test_bc011_table_for_region(dash_duo, run_bubble_app):
     assert 'Spain' in dash_duo.find_element('#values_table').text
 
 
-def test_bc012_slider(dash_duo, run_bubble_app):
-    """
-    GIVEN that the dash app is running
-    WHEN the user is on the bubble chart page and they go through every year in the slider
-    THEN the year selected in the slider should match that found under the graph
-    """
-    dash_duo.wait_for_element("H5", timeout=4)
-    time.sleep(3)
-    time_click = dash_duo.find_element('#bubble_chart > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.slider-container > g > rect.slider-rail-touch-rect')
-    year = 2006
-    for i, pos in enumerate(np.arange(0.03, 0.99, 1/15)):
-        if i >= 8:
-            pos = 0.56 + (i-8) * 0.067
-        dash_duo.click_at_coord_fractions(time_click, pos, 0.5)
-        time.sleep(0.5)
-        assert ('Year='+str(year)) in dash_duo.find_element('#bubble_chart_col').text
-        year += 1
-

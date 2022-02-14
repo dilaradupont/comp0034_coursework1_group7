@@ -2,8 +2,8 @@
 The following file was originally created to test the app by using teh multi page app and index. This means that the
 server was started through the main page (index) and then the different pages were called by navigating using the url.
 However, after multiple tests and trials, it was found that the testing of multi page is not supported as the multi page
-app is loaded once, and then the server only runs the index without calling the other pages. For this reason, the app
-were copied and modified in a 'individual_app_test' folder to allow individual app testing. The copied folders and file
+app is loaded once, and then the server only runs the index without calling the other pages. For this reason, the apps
+were copied and modified in a 'individual_app_test' folder to allow individual app testing. The copied folders and files
 finish in '_ind' to indicate that it is the modified version for an individual app rather than multi page.
 """
 import pytest
