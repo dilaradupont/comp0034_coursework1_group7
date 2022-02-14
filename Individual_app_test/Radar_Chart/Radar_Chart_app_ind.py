@@ -23,8 +23,6 @@ from dash import html
 from dash.dependencies import Input, Output
 import dash
 
-pio.renderers.default = "browser"
-
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #
 
 external_stylesheets = [dbc.themes.COSMO]

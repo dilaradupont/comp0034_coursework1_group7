@@ -21,8 +21,6 @@ from dash import html
 from dash.dependencies import Input, Output
 from Multi_Page.StartingBusiness import app
 
-pio.renderers.default = "browser"
-
 # -----------------------------------------------StyleSheet----------------------------------------------------------- #
 
 external_stylesheets = [dbc.themes.COSMO]
