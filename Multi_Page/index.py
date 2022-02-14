@@ -24,7 +24,7 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dbc.NavLink("Radar Chart", href="radar-chart")),
     ],
     brand="Starting a Business",
-    brand_href="http://127.0.0.1:8050/",
+    brand_href="/",
     color="primary",
     dark=True,
     links_left=True,
@@ -120,4 +120,4 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=5050)

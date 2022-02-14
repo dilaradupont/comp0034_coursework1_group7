@@ -1,11 +1,15 @@
 """
 This file is used to test the Bubble chart app page. It tests for titles, dropdown menus and finally simulates possible
 interactions that a user could have with the app.
+
+The same file can be used to run multiple test on the app when is running singularly or run a single test (example:
+Run Test: test_bc001_h1_headers) when using a multi page layout. When performing the latter is important to change the
+conftest.py file as outlined in the README and in teh file itself.
 """
 import time
 from selenium.webdriver.common.keys import Keys
 import numpy as np
-from dash.testing.application_runners import import_app
+from selenium.webdriver.common.by import By
 
 
 def test_bc001_h1_headers(dash_duo, run_bubble_app):
@@ -33,6 +37,7 @@ def test_bc002_h2_headers(dash_duo, run_bubble_app):
     expected_list = ["Relationship between factors involved in starting a business",
                      "Data for the chosen geographic area"]
     dash_duo.driver.implicitly_wait(3)
+    time.sleep(10)
     if len(actual_list) == len(expected_list):
         for h_i in range(0, len(actual_list)):
             assert actual_list[h_i].text.casefold() == expected_list[h_i].casefold()
@@ -185,8 +190,8 @@ def test_bc011_table_for_region(dash_duo, run_bubble_app):
     """
     dash_duo.wait_for_element("H5", timeout=4)
     dash_duo.driver.implicitly_wait(3)
-    RegionClick = dash_duo.find_element('#_dbcprivate_checklist_region_input_Europe\ \&\ Central\ Asia')
-    RegionClick.click()
+    region_click = dash_duo.find_element('#_dbcprivate_checklist_region_input_Europe\ \&\ Central\ Asia')
+    region_click.click()
     time.sleep(5)
     assert 'Spain' in dash_duo.find_element('#values_table').text
 
@@ -198,7 +203,7 @@ def test_bc012_slider(dash_duo, run_bubble_app):
     THEN the year selected in the slider should match that found under the graph
     """
     dash_duo.wait_for_element("H5", timeout=4)
-    time.sleep(5)
+    time.sleep(3)
     time_click = dash_duo.find_element('#bubble_chart > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.slider-container > g > rect.slider-rail-touch-rect')
     year = 2006
     for i, pos in enumerate(np.arange(0.03, 0.99, 1/15)):

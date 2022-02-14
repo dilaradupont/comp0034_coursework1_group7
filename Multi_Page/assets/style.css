@@ -1,30 +1,65 @@
 #indicator .VirtualizedSelectFocusedOption {
-  background-color: yellowgreen;
+  background-color: #4CAF50;
   color: black;
 }
 
 #region .VirtualizedSelectFocusedOption {
-  background-color: yellowgreen;
+  background-color: #4CAF50;
   color: black;
 }
 
 #income .VirtualizedSelectFocusedOption {
-  background-color: yellowgreen;
+  background-color: #4CAF50;
+  color: black;
+}
+
+#year .VirtualizedSelectFocusedOption {
+  background-color: #4CAF50;
+  color: black;
+}
+
+#year1 .VirtualizedSelectFocusedOption {
+  background-color: #4CAF50;
+  color: black;
+}
+
+#country .VirtualizedSelectFocusedOption {
+  background-color: #4CAF50;
+  color: black;
+}
+
+#country1 .VirtualizedSelectFocusedOption {
+  background-color: #4CAF50;
   color: black;
 }
 
 #indicator .Select-menu-outer {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
 #region .Select-menu-outer {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
 #income .Select-menu-outer {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
+#year .Select-menu-outer {
+  background-color: whitesmoke;
+}
+
+#year1 .Select-menu-outer {
+  background-color: whitesmoke;
+}
+
+#country .Select-menu-outer {
+  background-color: whitesmoke;
+}
+
+#country1 .Select-menu-outer {
+  background-color: whitesmoke;
+}
 h3 {
   text-align: center;
   text-transform: uppercase;

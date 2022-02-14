@@ -1,6 +1,10 @@
 """
 This file is used to test the choropleth app page. It tests for titles, dropdown menus and finally simulates a possible
 interaction that a user could have with the app.
+
+The same file can be used to run multiple test on the app when is running singularly or run a single test (example:
+Run Test: test_bc001_h1_headers) when using a multi page layout. When performing the latter is important to change the
+conftest.py file as outlined in the README and in teh file itself.
 """
 import time
 import numpy as np
