@@ -127,6 +127,9 @@ appropriate charts or visualisation to use different websites were used [3],[4].
 
 ### Bubble Chart Page Design
 
+Question: How have the costs, time and procedures required for starting a business changed over time with respect to
+gender and geographical region? Which is the geographical region that offers the best options for starting a business?
+
 Among the questions that the app seeks to answer, great focus should be put on the change over time of the costs, time
 and procedures required for starting a business and the relationship of such factors with gender and geographical
 region. A way of relating the three indicators in a single visualisation, and to then allow comparison over the years,
@@ -159,6 +162,9 @@ should remain constant. Fading of the background bubbles that the user chose not
 
 ### Radar Chart Page Design
 
+Questions: How does gender impact indicators' scores in different countries? What differences and similarities can be
+found between countries in different years based on gender?
+
 If considering the case of an entrepreneur planning to start a business in a foreign country and wanting to compare
 possible nations, it is crucial to develop a visualisation that could allow to easily identify similarities and
 differences between countries. Furthermore, a gender comparison could be beneficial to both entrepreneurs and
@@ -173,7 +179,15 @@ With regards to the visual layout of the page, a limited number of graphs should
 impairing the ability of the user to clearly visualise the data. Dropdown menus could be used to select countries and
 years.
 
+Initial sketch for the radar chart:
+
+![Radar chart sketch](Images/Sketch_radar.jpeg)
+
 ### Choropleth Map Page Design
+
+Questions: Which is the geographical region that offers the best options for starting a business? Which countries share
+similar scores for different starting business indicators? What differences can be found between indicators for
+countries in specific geographical regions?
 
 Due to the global nature of the data provided, one of the great potentialities of the application is that of providing
 geographical relations between factors involved in starting a business. Both researchers and entrepreneurs could obtain
@@ -197,6 +211,10 @@ should also be implemented. The data on the top-10 bar chart should correspond t
 The page should be divided into three main areas to follow the visual hierarchy and reading patterns previously
 outlined; the first, should contain the dropdown menus, while the other two should be placed side-by-side and display
 the top-10 bar chart and the choropleth app respectively.
+
+Initial sketch for the choropleth map:
+
+![Choropleth sketch](Images/Sketch_choropleth.png)
 
 ### Evaluation of the App Design
 
@@ -355,7 +373,7 @@ Jan. 21, 2022).
 [5]    “A Complete Guide to Bubble Charts | Tutorial by
 Chartio.” https://chartio.com/learn/charts/bubble-chart-complete-guide/ (accessed Jan. 23, 2022).
 
-[6]    “The Radar chart and its caveats.” https://www.data-to-viz.com/caveat/spider.html (accessed  Jan. 24, 2022).
+[6]    “The Radar chart and its caveats.” https://www.data-to-viz.com/caveat/spider.html (accessed Jan. 24, 2022).
 
 [7]    “Data Visualization and The Truthful Art -
 Rootstrap.” https://www.rootstrap.com/blog/data-visualization-and-truthful-art/ (accessed Jan. 16, 2022).
