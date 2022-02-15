@@ -220,7 +220,7 @@ def test_bc012_slider(dash_duo, start_main_app):
     time.sleep(5)
     time_click = dash_duo.find_element('#bubble_chart > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.slider-container > g > rect.slider-rail-touch-rect')
     year = 2006
-    for i, pos in enumerate(np.arange(0.03, 0.99, 1/15)):
+    for i, pos in enumerate(np.arange(0.03, 0.97, 1/15)):
         if i >= 8:
             pos = 0.56 + (i-8) * 0.067
         dash_duo.click_at_coord_fractions(time_click, pos, 0.5)
