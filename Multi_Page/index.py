@@ -9,7 +9,7 @@ from Multi_Page.StartingBusiness import app
 from Multi_Page.apps.About_Us import About_us_app
 from Multi_Page.apps.Bubble_Chart import Bubble_Chart_app
 from Multi_Page.apps.Choropleth_Map import Choropleth_app
-from Multi_Page.apps.Radar_chart import Radar_Chart_app
+from Multi_Page.apps.Radar_Chart import Radar_Chart_app
 
 app.title = "Business"
 
@@ -24,7 +24,7 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dbc.NavLink("Radar Chart", href="radar-chart")),
     ],
     brand="Starting a Business",
-    brand_href="http://127.0.0.1:8050/",
+    brand_href="/",
     color="primary",
     dark=True,
     links_left=True,
@@ -120,4 +120,4 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=5050)

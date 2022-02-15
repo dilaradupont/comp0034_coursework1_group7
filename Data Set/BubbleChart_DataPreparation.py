@@ -4,7 +4,7 @@ Using melt and pivot to combine and switch columns with rows, and mean to create
 """
 import pandas as pd
 
-df = pd.read_csv('./DBJoint.csv')
+df = pd.read_csv('DBJoint.csv')
 
 # Remove all rows that are not Time, Cost, Procedures required - Score
 indicator_codes_list = ['IC.REG.COST.PC.MA.ZS.DFRN', 'IC.REG.COST.PC.FE.ZS.DRFN', 'IC.REG.PROC.MA.NO.DFRN',
