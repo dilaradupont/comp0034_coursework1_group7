@@ -7,6 +7,11 @@
 The following URL is a link to the repository for COMP0034 coursework 1 for group number 7:
 [Repository Coursework 1 - Group 7](https://github.com/ucl-comp0035/comp0034-cw1-g-group-7-1.git)
 
+### Video Presentation
+
+The following URL is a link to the video presentation for COMP0034 coursework 1 for group number 7:
+[Video Presentation Coursework 1 - Group 7](https://mediacentral.ucl.ac.uk/Play/81639)
+
 ### Set-up Instructions
 
 Assuming that requirements will be installed from [requirements.txt](requirements.txt), the full list is provided in
